@@ -18,7 +18,7 @@ class Server(models.Model):
     idc               = models.ForeignKey(Idc,null=True,verbose_name="所在机房",help_text="所在机房",on_delete=models.CASCADE,)
     cabinet           = models.ForeignKey(Cabinet,null=True,verbose_name="所在机柜",help_text="所在机柜",on_delete=models.CASCADE,)
     cabinet_position  = models.CharField("机柜内位置",null=True,max_length=20,help_text="机柜内位置")
-    uuid              = models.CharField("UUID",db_index=True,unique=True,max_length=32,help_text="UUID")
+    uuid              = models.CharField("UUID",db_index=True,unique=True,max_length=50,help_text="UUID")
     last_check        = models.DateTimeField("检测时间",db_index=True,auto_now=True,help_text="检测时间")
     remark = models.CharField("备注", max_length=200, help_text="备注", null=True)
 
@@ -29,6 +29,10 @@ class Server(models.Model):
     class Meta:
         db_table = "resources_server"
         ordering = ["id"]
+        permissions = (
+            ("view_server","can view server"),
+
+        )
 
 class NetworkDevice(models.Model):
     """网卡模型"""
