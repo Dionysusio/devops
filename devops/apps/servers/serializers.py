@@ -26,7 +26,7 @@ class ServerAutoReportSerializer(serializers.Serializer):
 
     # 验证1,验证制造商字段manufacturer
     def validate_manufacturer(self, value):
-        try: #检查是否存在
+        try: #检查vendor_name是否存在
             return Manufacturer.objects.get(vendor_name__exact=value)
         except Manufacturer.DoesNotExist:
             # 没有就创建,定义个创建的方法create_manufacturer,返回一个制造商的实例
@@ -56,8 +56,8 @@ class ServerAutoReportSerializer(serializers.Serializer):
         """入口"""
         uuid = validated_data["uuid"].lower()
         sn = validated_data["sn"].lower()
-        try:
-            if sn == uuid or sn == "" or sn.startswith("vmeare"):
+        try: #区分虚拟机还是物理机
+            if sn == uuid or sn == "" or sn.startswith("vmware"):
                 # 虚拟机
                 server_obj = Server.objects.get(uuid__icontains=uuid)
             else:
@@ -70,7 +70,7 @@ class ServerAutoReportSerializer(serializers.Serializer):
 
     def update_server(self,instance,validated_data):
         print("update")
-        instance.hostname = validated_data.get("hostanme",instance.hostname)
+        instance.hostname = validated_data.get("hostanme",instance.hostname)#设置个默认值instance.hostname
         instance.cpu = validated_data.get("cpu",instance.cpu)
         instance.ip = validated_data.get("ip",instance.ip)
         instance.mem = validated_data.get("mem",instance.mem)
@@ -82,19 +82,21 @@ class ServerAutoReportSerializer(serializers.Serializer):
 
     def check_server_network_device(self,server_obj,network):
         """ 检查此服务器有没有这些网卡设备,并做关联 """
-        network_device_queryset = server_obj.networkdevice_set.all()#取到当前服务器的所有网卡
-        current_network_device_queryset = []
+        network_device_queryset = server_obj.networkdevice_set.all()#取到当前服务器的所有网卡,之前的
+        current_network_device_queryset = []#定义现在的网卡列表
+
         for device in network:
             try: #检查有没有当前设备名的网卡
                 network_device_obj = network_device_queryset.get(name__exact=device["name"])
             except NetworkDevice.DoesNotExist:
                 # 不存在则创建网卡,定义create_network_device
-                nWWetwork_device_obj = self.create_network_device(server_obj,device)
+                network_device_obj = self.create_network_device(server_obj,device)
             self.check_ip(network_device_obj,device["ips"])#检查ip,要知道ip是在哪个网卡上面
-            current_network_device_queryset.append(network_device_obj)
+            current_network_device_queryset.append(network_device_obj)#将现在的存到列表里
+
         for network_device_obj in set(network_device_queryset) - set(current_network_device_queryset):
             network_device_obj.delete()
-            # 如果网卡改名了,需要将之前网卡以及所关联的ip全删除掉.删掉之前有的,当前没有的
+            # 如果网卡改名了,需要将之前网卡以及所关联的ip全删除掉. 删掉之前有的,当前没有的
 
     def check_ip(self,network_device_obj,ifnets):
         # 拿到当前网卡的所有ip,检查ip在不在网卡上.不存在就创建ip,定义create_ip
@@ -105,7 +107,7 @@ class ServerAutoReportSerializer(serializers.Serializer):
                 ip_obj = ip_queryset.get(ifnet["ip_addr"])
             except IP.DoesNotExist:
                 ip_obj = self.create_ip(network_device_obj,ifnet)
-            current_ip_queryset.append(ip_obj) #当前的ip存到ip列表里
+            current_ip_queryset.append(ip_obj) #将当前的ip存到ip列表里
         for ip_obj in set(ip_queryset) - set(current_ip_queryset):
             ip_obj.delete()
             # 1.换了ip地址
@@ -129,10 +131,12 @@ class ServerAutoReportSerializer(serializers.Serializer):
     # 创建制造商对象
     def create_manufacturer(self,vendor_name):
         return Manufacturer.objects.create(vendor_name=vendor_name)
+        #只要传vendor_name即可,其他字段可以为空
 
     # 创建模型对象
     def create_product_model(self,manufacturer_obj,model_name):
         return ProductModel.objects.create(model_name=model_name,vendor=manufacturer_obj)
+        #传model_name,vendor(manufacturer_obj)字段
 
     def to_representation(self, instance):
         ret = {
@@ -141,8 +145,8 @@ class ServerAutoReportSerializer(serializers.Serializer):
         }
         return ret
 
-# class ServerSerializer(serializers.ModelSerializer):
-class ServerSerializer(serializers.HyperlinkedModelSerializer):
+class ServerSerializer(serializers.ModelSerializer):
+# class ServerSerializer(serializers.HyperlinkedModelSerializer):
     """服务器序列化类"""
     class Meta:
         model = Server

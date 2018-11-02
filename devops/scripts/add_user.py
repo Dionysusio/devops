@@ -7,6 +7,8 @@ import django
 
 project_dir = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 sys.path.append(project_dir)
+# print(project_dir)
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "devops.settings")
 django.setup()
 

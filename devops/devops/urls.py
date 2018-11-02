@@ -9,6 +9,7 @@ from servers.views import ServerAutoReportViewset,ServerViewset,NetworkDeviceVie
 
 
 route = DefaultRouter()
+
 route.register("idcs",IdcListViewset,base_name="idcs")
 route.register("users",UserViewset,base_name="users")
 route.register("cabinet",CabinetViewset,base_name="cabinet")
@@ -22,6 +23,7 @@ urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     # url(r'^', include("idcs.urls")),  以后这个文件不需要了,甚至admin也不需要
     url(r'^', include(route.urls)),
+    url(r'^api-auth', include("rest_framework.urls",namespace="rest_framework")),
     url(r'^docs/',include_docs_urls("little amy运维平台接口文档"))
 
 ]

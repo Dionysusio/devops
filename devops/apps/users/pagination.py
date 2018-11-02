@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 #coding:utf-8
+
 from rest_framework.pagination import PageNumberPagination
 
 class Pagination(PageNumberPagination):

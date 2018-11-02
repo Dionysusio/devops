@@ -20,7 +20,7 @@ class Server(models.Model):
     cabinet_position  = models.CharField("机柜内位置",null=True,max_length=20,help_text="机柜内位置")
     uuid              = models.CharField("UUID",db_index=True,unique=True,max_length=50,help_text="UUID")
     last_check        = models.DateTimeField("检测时间",db_index=True,auto_now=True,help_text="检测时间")
-    remark = models.CharField("备注", max_length=200, help_text="备注", null=True)
+    remark            = models.CharField("备注", max_length=200, help_text="备注", null=True)
 
     def __str__(self):
         return self.ip
@@ -61,12 +61,4 @@ class IP(models.Model):
     class Meta:
         db_table = "resourse_ip"
         ordering = ["id"]
-
-
-
-
-
-
-
-
 

@@ -8,6 +8,7 @@ from .models import ProductModel
 
 class ManufacturerSerializer(serializers.ModelSerializer):
     # 由于使用模型序列化类,所有数据都来源于模型,所以help_text 要在模型里加
+    # 作用: 实现create,update方法; 处理了字段
     class Meta:
         model = Manufacturer
         fields = "__all__"

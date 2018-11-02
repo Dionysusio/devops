@@ -1,12 +1,15 @@
 from rest_framework import viewsets
 # from rest_framework.pagination import PageNumberPagination
 from django.contrib.auth import get_user_model
-from django_filters.rest_framework import DjangoFilterBackend
-
+from django_filters.rest_framework import DjangoFilterBackend #搜索
+from rest_framework.authentication import SessionAuthentication
+from rest_framework.permissions import IsAuthenticated,AllowAny
 User = get_user_model()
 
 from .serializers import UserSerializer
 from .filters import UserFilter
+# from .pagination import Pagination
+
 
 
 class UserViewset(viewsets.ReadOnlyModelViewSet):
@@ -21,20 +24,8 @@ class UserViewset(viewsets.ReadOnlyModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filter_class = UserFilter
     filter_fields = ("username",) #搜索的字段
-
-
-    # def get_queryset(self):
-    #     queryset = super(UserViewset, self).get_queryset()
-    #     username = self.request.query_params.get("username", None)
-    #     if username:
-    #         queryset = queryset.filter(username__icontains=username)
-    #     return queryset
-
-
-
-
-
-
+    # authentication_classes = (SessionAuthentication,)
+    # permission_classes = (AllowAny,)
 
 
 

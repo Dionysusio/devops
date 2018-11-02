@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 import sys
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,os.path.join(BASE_DIR,"apps"))
@@ -27,10 +28,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+#分页功能
 REST_FRAMEWORK = {
     "PAGE_SIZE":10,
     "DEFAULT_PAGINATION_CLASS":"rest_framework.pagination.PageNumberPagination",
     # "DEFAULT_PAGINATION_CLASS":"users.pagination.Pagination",
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.DjangoModelPermissions',
+    ),
+
+
 }
 
 # Application definition
@@ -56,7 +63,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
