@@ -1,6 +1,7 @@
 from django.conf.urls import url,include
 from rest_framework.routers import DefaultRouter
 from rest_framework.documentation import include_docs_urls
+
 from idcs.views import IdcListViewset
 from users.views import UserViewset
 from cabinet.views import CabinetViewset
@@ -27,3 +28,5 @@ urlpatterns = [
     url(r'^docs/',include_docs_urls("little amy运维平台接口文档"))
 
 ]
+
+

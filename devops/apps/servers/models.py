@@ -59,6 +59,6 @@ class IP(models.Model):
         return self.ip_addr
 
     class Meta:
-        db_table = "resourse_ip"
+        db_table = "resource_ip"
         ordering = ["id"]
 

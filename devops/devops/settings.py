@@ -31,10 +31,11 @@ ALLOWED_HOSTS = ["*"]
 #分页功能
 REST_FRAMEWORK = {
     "PAGE_SIZE":10,
-    "DEFAULT_PAGINATION_CLASS":"rest_framework.pagination.PageNumberPagination",
+    "DEFAULT_PAGINATION_CLASS":"rest_framework.pagination.PageNumberPagination", #分页
     # "DEFAULT_PAGINATION_CLASS":"users.pagination.Pagination",
-    'DEFAULT_PERMISSION_CLASSES': (
+    'DEFAULT_PERMISSION_CLASSES': ( #权限
         'rest_framework.permissions.DjangoModelPermissions',
+        'devops.permissions.Permissions',
     ),
 
 

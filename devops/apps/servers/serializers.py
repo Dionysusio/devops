@@ -7,7 +7,7 @@ from manufacturer.models import Manufacturer,ProductModel
 
 class ServerAutoReportSerializer(serializers.Serializer):
     """
-    服务器同步序列化类.
+    服务器同步序列化类. 使用serializers.Serializer类,序列化指定字段,自己写.
     这个地方的验证属于程序级别的验证.model是数据库级别的验证,能让程序验证的,就不要进数据库验证.
     """
     ip            =    serializers.IPAddressField(required=True)
@@ -17,22 +17,20 @@ class ServerAutoReportSerializer(serializers.Serializer):
     disk          =    serializers.CharField(required=True,max_length=200)
     os            =    serializers.CharField(required=True,max_length=50)
     sn            =    serializers.CharField(required=True,max_length=50)
-    # manufacturer  =    serializers.PrimaryKeyRelatedField(many=False,queryset=Manufacturer.objects.all())
-    manufacturer  =    serializers.CharField(required=True)
-    model_name    =    serializers.CharField(required=True)
+    manufacturer  =    serializers.CharField(required=True) #制造商
+    model_name    =    serializers.CharField(required=True) #型号名称
     uuid          =    serializers.CharField(required=True,max_length=50)
-    # network关联对象,接收的时候传一个json格式的数据,然后再处理
-    network       =    serializers.JSONField(required=True)
+    network       =    serializers.JSONField(required=True) #网卡,关联对象,接收的时候传一个json格式的数据,然后再处理
 
-    # 验证1,验证制造商字段manufacturer
+    # 验证1,验证制造商字段manufacturer,返回的是一个制造商的实例,(在ServerAutoReportSerializer序列化类中验证里面的字段)
     def validate_manufacturer(self, value):
-        try: #检查vendor_name是否存在
+        try: #检查vendor_name是否存在,这个参数是必须传的
             return Manufacturer.objects.get(vendor_name__exact=value)
         except Manufacturer.DoesNotExist:
             # 没有就创建,定义个创建的方法create_manufacturer,返回一个制造商的实例
             return self.create_manufacturer(value)
 
-    # 验证2,对象级别验证,验证的是ServerAutoReportSerializer所有的数据
+    # 验证2,对象级别验证,(验证的是ServerAutoReportSerializer序列化类中所有的数据)
     def validate(self, attrs):
         # network = attrs["network"]
         # del attrs["network"] #取到,然后删掉. 因为数据库里没有这个字段,后面验证会报错
@@ -48,7 +46,7 @@ class ServerAutoReportSerializer(serializers.Serializer):
         print("create")
         network = validated_data.pop("network") # 先拿出network数据,因为服务器没有这个字段
         server_obj = Server.objects.create(**validated_data) # 创建一个server记录
-        # server_obj.networkdevice_set = network_queryset # 一对多关联
+        # server_obj.networkdevice_set = network_queryset # server和网卡进行一对多关联
         self.check_server_network_device(server_obj,network)
         return server_obj
 
@@ -82,11 +80,11 @@ class ServerAutoReportSerializer(serializers.Serializer):
 
     def check_server_network_device(self,server_obj,network):
         """ 检查此服务器有没有这些网卡设备,并做关联 """
-        network_device_queryset = server_obj.networkdevice_set.all()#取到当前服务器的所有网卡,之前的
-        current_network_device_queryset = []#定义现在的网卡列表
+        network_device_queryset = server_obj.networkdevice_set.all() #取到当前服务器的所有网卡,之前的,server和网卡一对多关联
+        current_network_device_queryset = [] #定义现在的网卡列表
 
         for device in network:
-            try: #检查有没有当前设备名的网卡
+            try: #检查有没有当前设备名的网卡,网卡的name:eth0
                 network_device_obj = network_device_queryset.get(name__exact=device["name"])
             except NetworkDevice.DoesNotExist:
                 # 不存在则创建网卡,定义create_network_device
@@ -96,10 +94,10 @@ class ServerAutoReportSerializer(serializers.Serializer):
 
         for network_device_obj in set(network_device_queryset) - set(current_network_device_queryset):
             network_device_obj.delete()
-            # 如果网卡改名了,需要将之前网卡以及所关联的ip全删除掉. 删掉之前有的,当前没有的
+            # 如果网卡改名了,需要将之前网卡以及所关联的ip全删除掉. 删掉之前有的,现在没有的
 
     def check_ip(self,network_device_obj,ifnets):
-        # 拿到当前网卡的所有ip,检查ip在不在网卡上.不存在就创建ip,定义create_ip
+        # 拿到当前网卡的所有ip,检查ip在不在网卡上,一对多关联.不存在就创建ip,定义create_ip
         ip_queryset = network_device_obj.ip_set.all() #如果跟新了一个ip,ip_queryset就是之前的ip列表
         current_ip_queryset = [] #定义当前的ip列表
         for ifnet in ifnets: #遍历所有的ip
@@ -120,10 +118,10 @@ class ServerAutoReportSerializer(serializers.Serializer):
         ifnet["device"] = network_device_obj #需要指定ip所在的网卡设备
         return IP.objects.create(**ifnet)
 
-    # 创建网卡,然后检查ip,定义check_ip
+    # 创建网卡,然后要检查ip,定义check_ip
     def create_network_device(self,server_obj,device):
         ips = device.pop("ips")#拿到多个ip
-        device["host"] = server_obj #网卡所在的主机,需要指定server_obj 实例
+        device["host"] = server_obj #写入网卡所在的主机,需要指定server_obj 实例
         network_device_obj = NetworkDevice.objects.create(**device)
         # self.check_ip(network_device_obj,ips)#检查ip,要知道ip是在哪个网卡上面
         return network_device_obj
@@ -131,12 +129,12 @@ class ServerAutoReportSerializer(serializers.Serializer):
     # 创建制造商对象
     def create_manufacturer(self,vendor_name):
         return Manufacturer.objects.create(vendor_name=vendor_name)
-        #只要传vendor_name即可,其他字段可以为空
+        #只传vendor_name参数,其他字段可以为空
 
     # 创建模型对象
     def create_product_model(self,manufacturer_obj,model_name):
         return ProductModel.objects.create(model_name=model_name,vendor=manufacturer_obj)
-        #传model_name,vendor(manufacturer_obj)字段
+        #传model_name,vendor参数
 
     def to_representation(self, instance):
         ret = {
@@ -147,7 +145,9 @@ class ServerAutoReportSerializer(serializers.Serializer):
 
 class ServerSerializer(serializers.ModelSerializer):
 # class ServerSerializer(serializers.HyperlinkedModelSerializer):
-    """服务器序列化类"""
+    """
+    服务器序列化类
+    """
     class Meta:
         model = Server
         fields = "__all__"
