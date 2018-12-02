@@ -45,3 +45,4 @@ class GroupUsersViewset(viewsets.GenericViewSet):
         userObj = User.objects.get(pk=request.data["uid"])
         groupObj.user_set.remove(userObj)
         return response.Response(status=status.HTTP_204_NO_CONTENT)
+

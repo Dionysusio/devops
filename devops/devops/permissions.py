@@ -3,7 +3,6 @@
 
 from rest_framework.permissions import DjangoModelPermissions
 
-
 class Permissions(DjangoModelPermissions):
 
 

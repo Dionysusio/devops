@@ -28,14 +28,27 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-#分页功能
+
+
 REST_FRAMEWORK = {
+
+#分页功能
     "PAGE_SIZE":10,
     "DEFAULT_PAGINATION_CLASS":"rest_framework.pagination.PageNumberPagination", #分页
     # "DEFAULT_PAGINATION_CLASS":"users.pagination.Pagination",
-    'DEFAULT_PERMISSION_CLASSES': ( #权限
-        'rest_framework.permissions.DjangoModelPermissions',
-        'devops.permissions.Permissions',
+
+#权限
+    'DEFAULT_PERMISSION_CLASSES': (
+        # 'rest_framework.permissions.DjangoModelPermissions',
+        'rest_framework.permissions.IsAuthenticated',
+        # 'devops.permissions.Permissions',
+    ),
+#认证
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        # 'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication'
     ),
 
 
@@ -51,12 +64,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'django_filters',
     'idcs',
     'users',
     'cabinet',
     'manufacturer',
     'servers',
+
 
 ]
 

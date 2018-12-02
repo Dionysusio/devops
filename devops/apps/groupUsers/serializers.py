@@ -7,3 +7,5 @@ from django.contrib.auth.models import Group
 class GroupSerializer(serializers.Serializer):
 	id = serializers.IntegerField(read_only=True)
 	name = serializers.CharField(required=False)
+
+

@@ -1,6 +1,7 @@
 from django.conf.urls import url,include
 from rest_framework.routers import DefaultRouter
 from rest_framework.documentation import include_docs_urls
+from rest_framework_jwt.views import obtain_jwt_token
 
 from idcs.views import IdcListViewset
 from users.views import UserViewset
@@ -25,8 +26,8 @@ urlpatterns = [
     # url(r'^', include("idcs.urls")),  以后这个文件不需要了,甚至admin也不需要
     url(r'^', include(route.urls)),
     url(r'^api-auth', include("rest_framework.urls",namespace="rest_framework")),
-    url(r'^docs/',include_docs_urls("little amy运维平台接口文档"))
+    url(r'^docs/',include_docs_urls("little amy运维平台接口文档")),
+    url(r'^api-token-auth/', obtain_jwt_token),
 
 ]
-
 
