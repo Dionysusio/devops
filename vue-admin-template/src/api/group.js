@@ -24,7 +24,7 @@ export function modifyGroup(id, data) {
   })
 }
 
-// 修改指定用户的角色
+// 修改指定用户的组
 export function updateUserGroups(uid, data) {
   return request({
     url: `/api/userGroups/${uid}/`,
@@ -33,7 +33,7 @@ export function updateUserGroups(uid, data) {
   })
 }
 
-// 获取指定用户的所有角色
+// 获取指定用户的所有组
 export function getUserGroupList(uid, params) {
   return request({
     url: `/api/userGroups/${uid}/`,
@@ -59,3 +59,4 @@ export function removeGroupMember(gid, data) {
     data
   })
 }
+

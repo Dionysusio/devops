@@ -1,30 +1,28 @@
-#!/usr/bin/python3
-#coding:utf-8
-
 from rest_framework import viewsets, mixins, response, status
 from django.contrib.auth.models import Permission, Group
 from .serializers import PermissionSerializer
 
+
 class PermissionViewset(viewsets.GenericViewSet,
                         mixins.ListModelMixin):
+
     """
     权限列表
-    list:
-        获取权限列表
+    list: 获取权限列表
+
     """
     queryset = Permission.objects.all()
     serializer_class = PermissionSerializer
 
+
 class GroupPermissionViewset(viewsets.GenericViewSet,
                              mixins.RetrieveModelMixin,
                              mixins.UpdateModelMixin):
-    """
-    用户组的权限
 
-    retrieve:
-        返回用户组的权限列表
+    """
+    用户组权限
+    retrieve: 返回用户组权限列表
     update:
-        更新指定用户组的权限
     """
     queryset = Group.objects.all()
     serializer_class = PermissionSerializer
@@ -35,10 +33,10 @@ class GroupPermissionViewset(viewsets.GenericViewSet,
         serializer = self.get_serializer(queryset, many=True)
         return response.Response(serializer.data)
 
-
     def update(self, request, *args, **kwargs):
         ret = {"status":0}
         groupObj = self.get_object()
         pids = request.data.get("pids",[])
         groupObj.permissions = Permission.objects.filter(pk__in=pids)
         return response.Response(ret, status=status.HTTP_200_OK)
+

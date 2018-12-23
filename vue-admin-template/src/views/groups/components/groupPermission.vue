@@ -43,7 +43,7 @@ export default {
       return `修改 ${this.gname} 的权限`
     },
     transferTitle() {
-      return ['权限', `${this.gname} 的权限`]
+      return ['权限点', `${this.gname} 的权限`]
     }
   },
   watch: {
@@ -64,8 +64,8 @@ export default {
     },
     fetchPermissionList() {
       getPermissionList({ page_size: 0 }).then(res => {
-        console.log(res)
-        this.data = res
+        // console.log(res)
+        this.data = res.results
       })
     },
     handleUpdateGroupPermission() {
