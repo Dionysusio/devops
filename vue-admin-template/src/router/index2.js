@@ -55,18 +55,13 @@ export const constantRouterMap = [
     children: [
       {
         path: '/user',
-        name: 'user',
         component: () => import('@/views/users/user'),
+        // @代表src目录
         meta: { title: '用户', icon: 'user' }
-      },
-      {
-        path: 'groups',
-        name: 'groups',
-        component: () => import('@/views/groups'),
-        meta: { title: '用户组' }
       }
     ]
   }
+
   // {
   //   path: '/example',
   //   component: Layout,
@@ -175,7 +170,7 @@ export const constantRouterMap = [
 ]
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history', //后端支持可开
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 })
