@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie'
+import store from '../store'
 
 const TokenKey = 'friedrich-token'
 
@@ -12,4 +13,11 @@ export function setToken(token) {
 
 export function removeToken() {
   return Cookies.remove(TokenKey)
+}
+
+export function checkPermission(perm) {
+  if (store.getters.permission.indexOf(perm) > -1) {
+    return true
+  }
+  return false
 }
