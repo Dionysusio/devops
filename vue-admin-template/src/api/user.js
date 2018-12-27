@@ -8,7 +8,6 @@ export function getUserList(params) {
   })
 }
 // 修改的动作在api接口里定义方法,get请求数据在params里,剩下的在data里
-
 export function getUser(userId) {
   return request({
     url: `/api/Users/${userId}/`,
