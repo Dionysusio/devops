@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import sys
+import datetime
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -50,7 +51,9 @@ INSTALLED_APPS = [
     'groups',
     'permissions',
     'django_apscheduler', #任务调度
-    'corsheaders',#django跨域
+    'corsheaders', #django跨域
+    'books',
+    'workorder'
 ]
 
 APSCHEDULER_DATETIME_FORMAT =  "N j, Y, f:s a"
@@ -62,7 +65,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
-    # 'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
@@ -158,20 +161,32 @@ STATIC_URL = '/static/'
 REST_FRAMEWORK = {
     "PAGE_SIZE": 10,
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
 
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.AllowAny',
-    )
+        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.DjangoModelPermissions',
+        # 'rest_framework.permissions.AllowAny',
+    ),
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
 
 }
 
-# JWT_AUTH = {
-#     'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=10),
-#     'JWT_AUTH_HEADER_PREFIX': 'JWT',
-# }
+#JWT认证
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=30),
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',
+}
+
+
 
 ##qcloud证书,名称必须大写
 QCLOUD_SECRETID = "AKIDTrLk3Rxczyv35yHJ4pQq5925ygEjnCD6"

@@ -15,7 +15,7 @@ class Cloud(models.Model):
 
 
 class Server(models.Model):
-    cloud              = models.ForeignKey(Cloud)
+    cloud              = models.ForeignKey(Cloud, on_delete=models.CASCADE,)
     instanceId         = models.CharField('实例ID', max_length=100,db_index=True,help_text='实例ID')
     instanceType       = models.CharField('实例类型',max_length=100,help_text='实例类型')
     cpu                = models.CharField('cpu', max_length=32,help_text='cpu')
@@ -28,7 +28,7 @@ class Server(models.Model):
 
 class Ip(models.Model):
     ip = models.GenericIPAddressField(db_index=True)
-    inner = models.ForeignKey(Server, related_name='innerIpAddress',null=True)
-    public = models.ForeignKey(Server,related_name='publicIpAddress',null=True)
+    inner = models.ForeignKey(Server, related_name='innerIpAddress',null=True, on_delete=models.CASCADE,)
+    public = models.ForeignKey(Server,related_name='publicIpAddress',null=True, on_delete=models.CASCADE,)
 
 
