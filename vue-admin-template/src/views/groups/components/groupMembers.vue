@@ -61,6 +61,7 @@ export default {
       visible: false,
       loading: false,
       memberList: [],
+      // 分页处理
       total: 0,
       params: {
         page: 1,

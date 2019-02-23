@@ -38,29 +38,33 @@ const user = {
     Login({ commit }, userInfo) {
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
-        login(username, userInfo.password).then(response => {
-          console.log(response)
-          // const data = response.data
-          setToken(response.token)
-          commit('SET_TOKEN', response.token)
-          resolve()
-        }).catch(error => {
-          reject(error)
-        })
+        login(username, userInfo.password)
+          .then(response => {
+            console.log(response)
+            // const data = response.data
+            setToken(response.token)
+            commit('SET_TOKEN', response.token)
+            resolve()
+          })
+          .catch(error => {
+            reject(error)
+          })
       })
     },
 
     // 获取用户信息
     GetInfo({ commit, state }) {
       return new Promise((resolve, reject) => {
-        getInfo(state.token).then(response => {
-          commit('SET_USERNAME', response.username)
-          commit('SET_NAME', response.name)
-          commit('SET_PERMISSION', response.permission)
-          resolve(response)
-        }).catch(error => {
-          reject(error)
-        })
+        getInfo(state.token)
+          .then(response => {
+            commit('SET_USERNAME', response.username)
+            commit('SET_NAME', response.name)
+            commit('SET_PERMISSION', response.permission)
+            resolve(response)
+          })
+          .catch(error => {
+            reject(error)
+          })
       })
     },
 

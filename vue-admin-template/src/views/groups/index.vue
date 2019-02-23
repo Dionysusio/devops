@@ -1,5 +1,6 @@
 <template>
   <div class="app-container">
+    <!-- 搜索添加按钮-->
     <el-row>
       <el-col :span="12">
         <el-input v-model="params.name" placeholder="搜索用户组" @keyup.enter.native="handleSearch">
@@ -10,6 +11,7 @@
         <el-button type="primary" @click="handleAddGroup">增加用户组</el-button>
       </el-col>
     </el-row>
+    <!-- 组的信息-->
     <el-table
       :data="groupData"
       stripe
@@ -42,6 +44,8 @@
         </template>
       </el-table-column>
     </el-table>
+
+    <!-- 分页-->
     <el-row v-show="total>10" type="flex" justify="center" style="padding-top:20px;">
       <el-pagination
         :total="total"
@@ -49,6 +53,8 @@
         background
         @current-change="handleChange" />
     </el-row>
+
+    <!-- 调用子组件-->
     <GroupForm v-model="groupFormVisible" :gid="groupId" :gname="groupName" @fetch="handleFetch"/>
     <GroupMember v-model="groupMemberVisible" :gid="groupId" :gname="groupName" @fetch="handleFetch"/>
     <GroupPermission v-model="groupPermissionVisible" :gid="groupId" :gname="groupName"/>
@@ -70,7 +76,7 @@ export default {
     return {
       groupData: [],
       total: 0,
-      params: {
+      params: { // 请求的参数都在params里
         page: 1,
         name: ''
       },
@@ -81,11 +87,11 @@ export default {
       groupName: ''
     }
   },
-  created() {
+  created() { // 页面加载完获取组列表数据
     this.fetchGroupList()
   },
   methods: {
-    fetchGroupList() {
+    fetchGroupList() { // 获取组列表数据
       getGroupList(this.params).then(res => {
         this.groupData = res.results
         this.total = res.count

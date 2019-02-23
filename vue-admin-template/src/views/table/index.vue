@@ -62,6 +62,7 @@ export default {
       listLoading: true
     }
   },
+  // 页面加载完执行的动作
   created() {
     this.fetchData()
   },

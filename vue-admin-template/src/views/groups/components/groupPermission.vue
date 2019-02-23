@@ -18,7 +18,7 @@ import { getPermissionList, updateGroupPermissionList, getGroupPermissionList } 
 export default {
   name: 'GroupPermission',
   props: {
-    value: {
+    value: { // :value=groupPermission,@input="groupPermission = arguments[0]"
       type: Boolean,
       default: false
     },
@@ -50,7 +50,7 @@ export default {
     value(val) {
       if (val === false) return
       this.visible = val
-      this.fetchPermissionList()
+      this.fetchPermissionList() // 组件加载的时候获取权限
       this.fetchGroupPermissionList()
     }
   },
@@ -62,7 +62,7 @@ export default {
         this.groupPermission = []
       }, 500)
     },
-    fetchPermissionList() {
+    fetchPermissionList() { // 获取权限列表,page_size:0 不分页
       getPermissionList({ page_size: 0 }).then(res => {
         // console.log(res)
         this.data = res.results

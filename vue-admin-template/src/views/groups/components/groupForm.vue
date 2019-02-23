@@ -1,5 +1,6 @@
 <template>
   <div class="group-form-container">
+    <!-- 这个表单功能:添加,修改-->
     <el-dialog :visible.sync="visible" :title="title" @close="handleClose">
       <el-form ref="groupForm" :model="form" :rules="rules" label-width="100px">
         <el-form-item label="用户组：" prop="name">
@@ -75,7 +76,7 @@ export default {
       this.resetForm()
       this.$emit('input', false)
     },
-    submitForm() {
+    submitForm() { // 提交有2种情况: 添加,修改
       this.$refs.groupForm.validate((valid) => {
         if (valid) {
           this.save()
@@ -85,7 +86,7 @@ export default {
         }
       })
     },
-    save() {
+    save() { // 在这里判断是添加,还是修改. 看有没有id,有的话就是修改,否则就是添加
       if (this.groupId === 0) {
         this.create()
       } else {

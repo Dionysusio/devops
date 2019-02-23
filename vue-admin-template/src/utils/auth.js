@@ -21,3 +21,10 @@ export function checkPermission(perm) {
   }
   return false
 }
+
+export function checkPerms(perm) {
+  if (store.getters.permission.indexOf(perm) > -1) {
+    return true
+  }
+  return false
+}

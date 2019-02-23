@@ -1,6 +1,7 @@
 import request from '@/utils/request'
 
 export function getGroupList(params) {
+  // 获取组列表
   return request({
     url: '/api/groups/',
     method: 'get',
@@ -9,6 +10,7 @@ export function getGroupList(params) {
 }
 
 export function addGroup(data) {
+  // 创建组
   return request({
     url: '/api/groups/',
     method: 'post',
@@ -17,6 +19,7 @@ export function addGroup(data) {
 }
 
 export function modifyGroup(id, data) {
+  // 更新组
   return request({
     url: `/api/groups/${id}/`,
     method: 'patch',
@@ -59,4 +62,3 @@ export function removeGroupMember(gid, data) {
     data
   })
 }
-

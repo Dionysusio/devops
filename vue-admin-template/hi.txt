@@ -1,0 +1,500 @@
+python manage.py createsuperuser
+python manage.py createsuperuser --username=admin --email=meer@amy.com
+pip install coreapi
+pip install coreapi-cli
+coreapi get http://192.168.188.98:8000/docs/
+systemctl enable mariadb
+systemctl start mariadb
+git push amsvue/
+git commit -m "初始化代码"
+git add --all amsvue/
+cat package-lock.json  |grep "fastclick*"
+cat package-lock.json  |grep "fast*"
+cat package-lock.json  |grep fast*
+npm install -g npm
+cd dev_code/amsvue/
+kill -9 27267
+ps -ef |grep django
+git commit -m "my first vue"
+git add --all vue-admin-template/
+git remote add origin git@github.com:Dionysusio/vue-admin.git
+drwxr-xr-x 5 root root   45 Dec 1
+drwxr-xr-x 8 root root 4.0K Dec  9 04:00 vue-admin-template/
+drwxr-xr-x 5 root root   81 Dec  2 01:05 devops8/
+drwxr-xr-x 6 root root  103 Dec  2 21:07 devops/
+ot 4.0K Dec  8 23:42 amsvue/
+curl http://192.168.188.98:8000/Users/
+curl http://192.168.188.98:8000/Servers/
+rm -rf test.py 
+rm -rf out
+vim test.py
+python test.py 
+py3 test.py 
+curlhttp://192.168.188.98:8000/Users/
+pip install django-cors-headers
+python -m http.server
+git clone https://github.com/PanJiaChen/vue-admin-template.git
+rm -rf autoAdmin/
+cd demo2
+ll demo1
+ll demo2
+cd vueDemo
+cd vueDemo2
+cd ../vueDemo2
+mv ../index.html ./
+mv index.html ../
+mv ./* ../
+cd demo1/
+mv index.html demo1/
+mv vue-muke/ ../
+rm -rf demo1
+cp -r demo1/ ./
+cp -r demo1/ .
+ll vueDemo2
+cp -r vueDemo/demo1/ vueDemo2
+mkdir vueDemo2
+rm -rf amspro.tar.gz 
+tar czf amspro.tar.gz amspro/
+npm install --registry=https://registry.npm.taobao.org
+vim config/index.js 
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+cd amspro/
+vue init webpack amspro
+rm -rf amspro/
+vim build/webpack.dev.conf.js
+vim 
+npm install webpack@^2.0.0
+npm install webpack@^3.1.0 webpack@1
+npm install webpack@^4.0.0
+npm install -dev-server@3.1.10
+npm install webpack-dev-server@2.9.1
+npm remove webpack-dev-server
+cat /root/.npm/_logs/2018-12-08T08_16_12_837Z-debug.log
+npm install webpack-dev-server
+vim /etc/hosts
+cat  /root/.npm/_logs/2018-12-08T07_48_52_387Z-debug.log
+cat  /root/.npm/_logs/2018-12-08T07_44_14_344Z-debug.log
+npm install vue-router --save
+npm install vue-router
+cd dist/
+npm install webpack-dev-server@2.9.7 --save-dev
+npm install webpack@3.8.0 --save-dev
+npm uninstall -g webpack-dev-server 
+npm uninstall webpack -g 
+systemctl stop kube-controller
+systemctl disable kube-controller
+vim index.js 
+cd config/
+curl http://localhost:8080 
+pwed
+长度..
+curl http://192.168.188.98:8080/
+출처: https://aspdotnet.tistory.com/2192 [심재운 블로그]
+npm install webpack@3.8.0 --save-dev 
+npm uninstall -g webpack-dev-server
+npm uninstall webpack -g
+npm install  json-parse-better-errors -g
+npm init --yes
+less /root/.npm/_logs/2018-12-07T02_55_20_089Z-debug.log
+npm install --save-dev url-loader@1.1.2
+npm install --save-dev webpack-dev-server@3.1.10
+pm install --save-dev webpack-dev-server@3.1.10
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.4: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.4 (node_modules/fsevents):
+vue init webpack amsVp
+vue init webpack amsVue
+npm install vue
+npm -v
+cat /etc/profile 
+cd /node/node
+npm uninstall vue
+rm -rf todolist2/
+rm -rf package-lock.json 
+npm install webpack@1
+rm -rf todolist/
+npm run serve
+npm install 
+root@node3 ~/dev_code# 
+fish: Unknown command 'vue-cli'
+root@node3 ~/dev_code# vue-cli
+root@node3 ~/d/todolist2# cd ..
+root@node3 ~/d/todolist2# 
+drwxr-xr-x   2 root root   21 Dec  6 18:23 static/
+drwxr-xr-x   4 root root   64 Dec  6 18:23 src/
+-rw-r--r--   1 root root  466 Dec  6 18:23 README.md
+-rw-r--r--   1 root root 407K Dec  6 18:25 package-lock.json
+w-r--r--   1 root root 2.1K Dec  6 18:23 package.json
+cd todolist2
+vue-cli
+cd todolist
+vue init webpack todolist2
+vue init webpack todolist
+vue list
+vue --help
+vue -V
+vue -v
+npm install vue-cli -g
+cnpm install vue-cli -g
+vue
+vue-cli -g
+cd todolist/
+vue create todolist
+npm install -g @vue/cli-init
+mv todolist/ dev_code/
+vue ui
+curl http://localhost:8000
+cat /root/.npm/_logs/2018-12-06T06_37_36_585Z-debug.log
+curl http://localhost:8080
+systemctl stop httpd
+npm install -g @vue/cli
+python manage.py schedule
+python manage.py migrate resources
+python manage.py makemigrations resources
+python manage.py migrate users
+python manage.py makemigrations users
+mysqldump -uroot -pyuanyuan --databases devops8 > /root/devops8.sql
+rm -rf devops8.sql 
+mv idc/ idc.bak
+~
+python manage.py makemigrations
+python manage.py migrate apscheduler
+python manage.py makemigrations django_apscheduler
+pip install django-apscheduler
+pip uninstall django-apscheduler
+rm -rf mytest/
+cd mytest/
+python manage.py migrate --fake
+python manage.py db
+rm -rf resources/
+mkdir qcloud
+cd resources/
+mkdir resources
+mysql -uroot -pyuanyuan 
+w
+python manage.py migrate -fake
+ps -ef |grep httpd
+kill -9 80275 80276 80277 80278 80279
+pkill apache
+pip install tencentcloud-sdk-python
+git clone git@github.com:Dionysusio/vue-admin-template.git
+cd web
+mkdir web
+rm -rf web
+rm --rf web
+fish
+git commit -m "2018.12.2"
+git add --all devops/
+curl -H "Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDM3NjEyMzEsImVtYWlsIjoiZXl6a18xMTEyQDE2My5jb20iLCJ1c2VybmFtZSI6ImFkbWluIiwidXNlcl9pZCI6NTh9.Z6eWhWmPlZxii7A75ixh1pjQ2DKZOEs6svYzLP3Wd5o" http://192.168.188.98:8000/users/ |python -m json.tool
+curl -H "Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDM3NjEyMzEsImVtYWlsIjoiZXl6a18xMTEyQDE2My5jb20iLCJ1c2VybmFtZSI6ImFkbWluIiwidXNlcl9pZCI6NTh9.Z6eWhWmPlZxii7A75ixh1pjQ2DKZOEs6svYzLP3Wd5o" http://192.168.188.98:8000/users/
+curl http://192.168.188.98:8000/users/
+curl -H "Authorization: JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NDM3NjExNDUsImVtYWlsIjoiZXl6a18xMTEyQDE2My5jb20iLCJ1c2VybmFtZSI6ImFkbWluIiwidXNlcl9pZCI6NTh9.0i9CeF8IFMF9gs8qGAKZH5WPkXo7o3fN7d4V1DM8Vj" http://192.168.188.98:8000/users/
+curl -H "Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV5emtfMTExMkAxNjMuY29tIiwidXNlcm5hbWUiOiJhZG1pbiIsInVzZXJfaWQiOjU4LCJleHAiOjE1NDM3NjA5NjF9.4l7ECoeLd00jv9UIvhtTU0H846kSThOUwEjL7OiZu4M" http://192.168.188.98:8000/users/
+curl -H "Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNTQzNzYwNTk4LCJlbWFpbCI6ImV5emtfMTExMkAxNjMuY29tIiwidXNlcl9pZCI6NTh9._QhbwbQ8JKXjqDPDaBvaRqQIrSspMjBPnS24ZHHRi-4" http://192.168.188.98:8000/users/
+curl -H "Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNTQzNzYwMDI3LCJlbWFpbCI6ImV5emtfMTExMkAxNjMuY29tIiwidXNlcl9pZCI6NTh9.UDqZ_k8kibsV3j-ON7gv_RXRrY6R0ziYnrZ3ar0VHH0" http://192.168.188.98:8000/users/
+curl  -X POST -H "Content-Type: application/json" -d "username=admin&password=12345@9826" http://192.168.188.98:8000/api-token-auth/
+curl -X POST http://192.168.188.98:8000/api-token-auth/ -H  "Content-Type: application/json" -d "username=admin&password=12345@9826" 
+pip install djangorestframework==3.6
+curl -X GET http://192.168.188.98:8000/users/ -H 'Authorization: Token 38c02114f2e74efa2961b2354689507f59238463' | python -m json.tool 
+curl -X GET http://192.168.188.98:8000/users/ -H 'Authorization: Token 38c02114f2e74efa2961b2354689507f59238463'
+curl -X GET http://192.168.188.98:8000/api-token-auth/ -H 'Authorization: Token 38c02114f2e74efa2961b2354689507f59238463'
+curl -H "Content-Type:application/json" -X POST -d '{"username":"admin","password":"12345@9826"}' http://192.168.188.98:8000/api-token-auth/
+curl -h
+curl -d '{"username":"admin","password":"12345@9826"}' http://192.168.188.98:8000/api-token-auth/
+curl -d '{"username":"admin","password":"12345@9826"}' http://192.168.188.98:8000/
+curl - X POST -d '{"username":"admin","password":"12345@9826"}' http://192.168.188.98:8000/api-token-auth/
+curl - X POST -H "Content-Type: application/json"  -d '{"username":"admin","password":"12345@9826"}' http://192.168.188.98:8000/api-token-auth/
+curl -d '{"username":"admin","password":"12345@9826"}' http://http://192.168.188.98:8000/api-token-auth/
+curl - X POST -d '{"username":"admin","password":"12345@9826"}' http://http://192.168.188.98:8000/api-token-auth/
+curl - X POST "Content-Type: application/json"  -d '{"username":"admin","password":"12345@9826"}' http://http://192.168.188.98:8000/api-token-auth/
+curl - X POST -H "Content-Type: application/json"  -d '{"username":"admin","password":"12345@9826"}' http://http://192.168.188.98:8000/api-token-auth/
+curl - X POST -H "Content-Type: application/json"  -d '{"username":"admin","password":"12345@9826"}' -T http://http://192.168.188.98:8000/api-token-auth/
+curl --help
+curl - x POST -H "Content-Type: application/json"  -d '{"username":"admin","password":"12345@9826"}' http://http://192.168.188.98:8000/api-token-auth/
+curl -X POST -d '{"username":"admin","password":"12345@9826"}' http://192.168.188.98:8000/api-token-auth/
+curl -X POST -H "ContentType: application/json" -d '{"username":"admin","password":"12345@9826"}' http://192.168.188.98:8000/api-token-auth/
+curl -X POST -H "ContentType: application/json" -d '{"username":"admin","password":"12345@9826"}' http://http://192.168.188.98:8000/api-token-auth/
+curl - X POST -H "ContentType: application/json"  -d '{"username":"admin","password":"12345@9826"}' http://http://192.168.188.98:8000/api-token-auth/
+pip install djangorestframework
+cat id_rsa
+ssh ams@172.18.75.130
+ssh 172.18.75.130
+cd .sssh
+cd //
+cd ../devops
+cd .
+python manage.py createsuperuser --username=admin --email=reboot@51reboot.com
+mysql -uroot -pyuanyuan < devops8.sql 
+cd apps/users
+python manage.py makemigrations --fake
+mysql -uroot -pyuanyuan < devops8.sql
+;;
+mv devops devops.bak
+mv groupUsers/ groupUsers.bak
+cd ../apps
+python manage.py makemigrations    
+cd migrations/
+cd idc
+cd ic
+cd apps/
+mv dashboard.bak dashboard
+mv dashboard/ dashboard.bak
+rm -rf idc
+cp -r idc/ idc.bak
+ls devops8.sql 
+python manage.py she
+cd app
+mysql -uroot -p
+cd qcloud/
+django
+ssh 172.18.222.124
+cat id_rsa.pub*
+pip uninstall tencentcloud-sdk-python
+ll devops/
+git commit -m "2018.12.1"
+git add __init__.py
+git add __pycache__/
+git add apps/
+git commit
+git add scripts/
+git add manage.py
+git add manage.py scripts/
+cd users
+cd users/
+django-admin
+pip install markdown
+curl -s -X PUT -d '{"name":"rock"}' http://192.168.188.98:8000/idcs/5/
+curl -s -X PUT -d '{"name":"rock"}' http://192.168.188.98:8000/idcs/4/
+python -m json apps/
+curl -s -X PUT -d '{"name":"rock"}' http://192.168.188.98:8000/idcs/4/ | python -m json
+curl -s -X DELETE http://192.168.188.98:8000/idcs/1
+curl -s -X PUT -d '{"name":"rock"}' http://192.168.188.98:8000/idcs/4/ |python -m json.tool
+curl -s -X PUT -d '{"name":"rock"}' http://192.168.188.98:8000/idcs/4/ | python -m json.tool
+from idc.models import Idc
+mv idc/ apps/
+python manage.py startapp idc
+rm -rf apps
+mkdir apps
+cd dashboard/
+al 0
+django-admin startproject idc
+curl "http://127.0.0.1:8000/"
+kill -9 21938
+python -m SimpleHTTPServer
+yum install httpd
+kill -9 20431
+bash
+. bin/activate.fish 
+cd py_03/
+cd .virtualenvs/
+rm -rf yxmodel.py 
+./activate.fish
+./activate
+chmod +x activate*
+activate.fish
+activate
+cd bin/
+cd .vi
+lsvirtualenv
+workon
+help bugs
+help python
+help
+yum install fish
+py3 yxmodel.py 
+python ams.py 
+py3 ams.py 
+grep -r "install.sh" ./
+grep -r "install.sh" 
+grep -R "install.sh" ./
+grep -R "install.sh" .
+grep -R "oh-my-zsh/master/tools/install.sh" .
+grep -r "oh-my-zsh/master/tools/install.sh" .
+cd ~
+yum install zsh
+vim ~/.zshrc
+vi ~/.zshrc
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+vim /etc/shells
+cat /etc/shells
+_echo_error() { echo -ne "\033[31;1m $1\033[0m\n";}
+ssh
+vim yxmodel.py
+vim ams.py 
+py3 ams.yy 
+py2 ams.yy 
+mv ams.yy ams.py
+vim ams.yy 
+mv yy.py ams.yy
+py3 yy.py 
+vim yy.py 
+py2 yy.py 
+du -sh 
+rm -rf yinli.py 
+python yy.py 
+rm -rf autoconf-archive-2012.09.08-4.el7.art.noarch.rpm
+rm -rf Python-3.6.6.tgz
+python yy
+vim yy.py
+workon py_03
+pip install -r requirements.txt
+pip install -r requirements.txt -
+cd servers/
+cd autoAdmin/apps/
+cd ops
+cd autoAdmin/
+ansible
+python manage.py runeserver 0.0.0.0:8000
+cat  id_rsa.pub
+python manage.py runserver 0.0.0.0
+python manage.py runserver
+rz
+rm -rf django-vue.js-book
+c d..
+git clone git@github.com:Dionysusio/django-vue.js-book.git
+git commit -m "2018.11.2"
+less views.py 
+LL
+cd *
+cd huyuanyuan/
+wpd
+tar xf devops.tar.gz 
+cp devops.tar.gz code
+git commit -m "first homework"
+git add huyuanyuan/
+mkdir huyuanyuan
+cd lesson1/
+git clone git@github.com:51reboot/devops8.git
+rm -rf devops8
+python manage.py runserver 0.0.0.0:8888
+cd ../../../
+cd ../..
+cd ../../../../
+djangoadmin
+cd huyuanyuan/mytest/
+git push origin
+git commit -m "第一天作业"
+less README.md 
+cd /
+rm -rf liuwei-BJ
+rm -rf liaoyao
+python manage.py startapp ops
+python manage.py startapp test
+django-admin startproject mytest
+cd liaoyao/
+c devops8
+git clone https://github.com/51reboot/devops8.git
+django-admin startproject devops8
+django-admin startproject devops
+(py_03) [root@node3 devops8]# 
+nothing to commit, working directory clean
+(py_03) [root@node3 devops8]# git status
+3 devops8]# 
+cd devopsll
+less *
+cd dev_code/devops/
+python manage.py createsuperuser admin
+python manage.py changepassword amy
+git commit -m "till day6"
+git add devops/
+python manage.py  migrate
+python manage.py  makemigrations
+git clone https://github.com/rfjer/autoAdmin.git
+git clone https://github.com/myide/see.git
+pip install autopep8
+pthon manage.py runserver 0.0.0.0:8000
+py3 add_user.py 
+llc
+ifconfig
+cat /etc/redhat-release
+fdisk -l
+cat /proc/meminfo
+cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
+cat /etc/issue | grep Linux
+blkid
+ls -l /dev/disk/by-uuid
+s -l /dev/disk/by-uuid
+uname -a
+cat /proc/cpuinfo
+cd devops/devops/
+git remote add origin git@github.com:Dionysusio/devops.git
+git push origin master:hyy 
+git commit -m "devops"
+git init devops/
+python manage.py migrate servers
+django-admin startapp servers
+python manage.py migrate manufacturer
+django-admin startapp manufacturer
+rm -rf manufacturer/
+coreapi action idcs create
+coreapi action idcs list
+django-admin startapp cabinet
+ps -ef |grep python
+pkill python
+systemctl stop kube-proxy
+systemctl stop kubelet
+systemctl stop docker
+systemctl stop kube-scheduler
+systemctl stop kube-controller-manager
+cd dev
+rm -rf devops/
+vim views.py 
+vi views.py 
+systemctl stop etcd
+systemctl stop kube-apiserver
+pyhthon manage.py runserver 0.0.0.0:8000
+pyhton manage.py runserver 0.0.0.0:8000
+systemctl restart mariadb
+vim /etc/my.cnf
+systemctl restart mysql
+mv devops.tar.gz /root
+python manage.py startapp users
+mv users apps/
+systemctl status mariadb
+systemctl status mysql
+systemctl status mariadbb
+systemctl status mariab
+http  GET http://192.168.188.98:8000/idcs.json
+http  GET http://192.168.188.98:8000/idcs/1.json
+http  GET http://192.168.188.98:8000/idcs/1.j
+http  GET http://192.168.188.98:8000/idcs/1.xml
+http http://192.168.188.98:8000/idcs/1.xml
+http  GET http://192.168.188.98:8000/idcs/idcs.json
+http --json GET http://192.168.188.98:8000/idcs/1.json
+http --json POST http://192.168.188.98:8000/idcs/1.json
+http --json POST http://192.168.188.98:8000/idcs/1/
+http --json GET http://192.168.188.98:8000/idcs/1/
+http --json GET http://192.168.188.98:8000/idcs/1
+http --json GET http://192.168.188.98:8000/idcs/4
+http http://192.168.188.98:8000/idcs/4/
+http http://192.168.188.98:8000/idcs/2/
+http http://192.168.188.98:8000/idcs/2
+http  http://192.168.188.98:8000/idcs/3
+http  http://192.168.188.98:8000/idcs/1
+http --json GET http://192.168.188.98:8000/idcs/
+http --json POST http://192.168.188.98:8000/idcs/
+http --json POST http://192.168.188.98:8000/idcs/ aaa=bbb
+pip install httpie
+python manage.py startapp idcs
+pip install --upgrade pip
+mysql -uroot -pyuanyuan
+tar czf devops.tar.gz devops
+?python manage.py 
+cd /var/log
+cd /tmp
+rm -rf ppp
+cd ppp
+rm -rf message*
+cd /var/log/
+iptables -L -n
+deactivate
+pip install Django==2.1
+pip install ipython==7.0
+pip search ipython
+pip list |grep ipython
+less requirements.txt 
+pip list |grep Django
+workon cmdb
+python manage.py ipython
+rm -rf requirements.txt 
+cat requirements.txt |wc -l 
+cat requirements.txt |ec -l

@@ -22,7 +22,11 @@ import Layout from '../views/layout/Layout'
   }
 **/
 export const constantRouterMap = [
-  { path: '/login', component: () => import('@/views/login/index'), hidden: true },
+  {
+    path: '/login',
+    component: () => import('@/views/login/index'),
+    hidden: true
+  },
   { path: '/404', component: () => import('@/views/404'), hidden: true },
 
   {
@@ -43,7 +47,6 @@ export const constantRouterMap = [
         component: () => import('@/views/tree/index'),
         meta: { title: 'Tree', icon: 'tree' }
       }
-
     ]
   },
   {
@@ -62,8 +65,63 @@ export const constantRouterMap = [
       {
         path: 'groups',
         name: 'groups',
+        permission: 'resources.add_ip',
         component: () => import('@/views/groups'),
         meta: { title: '用户组' }
+      }
+    ]
+  },
+  {
+    path: '/books',
+    component: Layout,
+    redirect: '/example/table',
+    name: '图书管理系统',
+    meta: { title: '图书管理系统', icon: 'example' },
+    children: [
+      {
+        path: 'book',
+        name: '图书',
+        component: () => import('@/views/books/book/index'),
+        meta: { title: '图书', icon: 'table' }
+      },
+      {
+        path: 'author',
+        name: '作者',
+        // perms: 'books.add_author',
+        component: () => import('@/views/books/author/index'),
+        meta: { title: '作者', icon: 'tree' }
+      },
+      {
+        path: 'publish',
+        name: '出版商',
+        component: () => import('@/views/books/publish/index'),
+        meta: { title: '出版商', icon: 'table' }
+      }
+    ]
+  },
+  {
+    path: '/workorder',
+    component: Layout,
+    name: '工单系统',
+    meta: { title: '工单系统', icon: 'form' },
+    children: [
+      {
+        path: 'apply',
+        name: '工单申请',
+        component: () => import('@/views/workorder/apply/index'),
+        meta: { title: '工单申请', icon: 'form' }
+      },
+      {
+        path: 'list',
+        name: '申请列表',
+        component: () => import('@/views/workorder/list/index'),
+        meta: { title: '申请列表', icon: 'table' }
+      },
+      {
+        path: 'history',
+        name: '工单历史',
+        component: () => import('@/views/workorder/history/index'),
+        meta: { title: '工单历史', icon: 'table' }
       }
     ]
   }

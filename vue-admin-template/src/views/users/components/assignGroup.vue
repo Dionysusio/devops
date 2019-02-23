@@ -47,20 +47,20 @@ export default {
   data() {
     return {
       visible: false,
-      options: [],
-      userGroups: []
+      options: [], // 所有组
+      userGroups: [] // 存的是用户组的id,
     }
   },
   watch: {
     value(val) {
       if (val <= 0) return
       this.visible = val
-      this.fetchGroupList()
+      this.fetchGroupList() // 模态框展示的一瞬间获取组数据,所以在this.visible = val之后,调用fetchGroupList
       this.fetchUserGroups()
     }
   },
   methods: {
-    handleClose() {
+    handleClose() { // 关闭
       this.visible = false
       this.$emit('input', false)
       setTimeout(() => {
@@ -68,25 +68,25 @@ export default {
         this.userGroups = []
       }, 500)
     },
-    fetchGroupList() {
+    fetchGroupList() { // 获取所有组,保存到options里
       getGroupList({ page_size: 0 }).then(res => {
-        this.options = res.results
+        this.options = res.results // 将数据保存到options里,不带分页的
       })
     },
-    fetchUserGroups() {
+    fetchUserGroups() { // 获取指定用户的所有组,保存到userGroups里,存的是id. page_size: 0 表示不分页,后端默认分页
       getUserGroupList(this.userId, { page_size: 0 }).then(res => {
         res.forEach((item) => {
           this.userGroups.push(item.id)
         })
       })
     },
-    handleSubmit() {
+    handleSubmit() { // 提交
       updateUserGroups(this.userId, { gids: this.userGroups }).then(() => {
         this.$message({
           message: `修改 ${this.userName} 用户组成功`,
           type: 'success'
         })
-        this.handleClose()
+        this.handleClose() // 将模态框关闭
       })
     }
   }
