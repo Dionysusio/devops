@@ -14,6 +14,7 @@ import os
 import sys
 import datetime
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(BASE_DIR, "apps"))
@@ -53,7 +54,10 @@ INSTALLED_APPS = [
     'django_apscheduler', #任务调度
     'corsheaders', #django跨域
     'books',
-    'workorder'
+    'workorder',
+    'autotask',
+    'release',
+    'projects'
 ]
 
 APSCHEDULER_DATETIME_FORMAT =  "N j, Y, f:s a"
@@ -73,7 +77,7 @@ MIDDLEWARE = [
 
 # django跨域
 CORS_ORIGIN_WHITELIST = (
-    '192.168.188.98:8080',
+    '192.168.188.98:8088',
 
 )
 
@@ -194,3 +198,8 @@ QCLOUD_SECRETKEY = "mSxHRQG3gWCvjjZFk4IKBsTtQ0ZDh3GG"
 
 
 DOMAIN = "@amy.com"
+
+# gitlab
+GITLAB_HTTP_URI = "http://192.168.188.98:82"
+GITLAB_TOKEN = "DzSxQQyCsbQxy-nz3AhT"
+
