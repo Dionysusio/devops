@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
-
-
 from rest_framework import serializers
 from django.contrib.auth.models import Group
 from django.conf import settings
 from django.contrib.auth import get_user_model
 User = get_user_model()
+
+# from django.conf.settings import GITLAB_HTTP_URI, GITLAB_TOKEN
+# import gitlab
+
 
 # 序列化控制: 具体的实现
 # 用户列表
@@ -62,6 +64,12 @@ class UserRegSerializer(serializers.ModelSerializer):
                                      label="密码",
                                      write_only=True,
                                      help_text="密码")
+
+    class Meta:
+        model = User
+        fields = ("username", "password", "name", "id", "phone")
+
+
     def validate(self, attrs):
         attrs["is_active"] = False
         attrs["email"] = "{}{}".format(attrs['username'], settings.DOMAIN)
@@ -73,6 +81,14 @@ class UserRegSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+        # 创建用户的同时创建gitlab用户
+        # gl = gitlab.Gitlab(settings.GITLAB_HTTP_URI, settings.GITLAB_TOKEN, api_version=4)
+        # res = gl.users.create({'username': validated_data['username'],
+        #                        'password': validated_data['password'],
+        #                        'email': validated_data['email'],
+        #                        'name': validated_data['name']})
+        # return instance
+
     def update(self, instance, validated_data):
         # 最终修改是在这个地方
         password = validated_data.get("password", None)
@@ -81,9 +97,6 @@ class UserRegSerializer(serializers.ModelSerializer):
             instance.save()
         return instance
 
-    class Meta:
-        model = User
-        fields = ("username", "password", "name", "id", "phone")
 
 
 # class UserRegSerializer(serializers.ModelSerializer):

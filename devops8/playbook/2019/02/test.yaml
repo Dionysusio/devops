@@ -1,0 +1,8 @@
+---
+- hosts: all
+  remote_user: root
+  gather_facts: no
+  tasks: 
+  - name: touch file
+    file: path=/tmp/11.txt state=touch mode=0777
+

@@ -37,6 +37,6 @@ class GroupPermissionViewset(viewsets.GenericViewSet,
         ret = {"status":0}
         groupObj = self.get_object()
         pids = request.data.get("pids",[])
-        groupObj.permissions = Permission.objects.filter(pk__in=pids)
+        groupObj.permission_set = Permission.objects.filter(pk__in=pids)
         return response.Response(ret, status=status.HTTP_200_OK)
 

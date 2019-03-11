@@ -2,7 +2,7 @@
 #coding:utf-8
 
 from rest_framework.routers import DefaultRouter
-from .views import PublishViewSet, AuthorViewSet,BookViewSet
+from .views import PublishViewSet, AuthorViewSet, BookViewSet
 
 router = DefaultRouter()
 

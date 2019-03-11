@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from rest_framework import viewsets, permissions, mixins, response
+from rest_framework import viewsets, permissions, mixins, response, status
 from .serializers import UserSerializer, UserRegSerializer
 from .filters import UserFilter
 from django_filters.rest_framework import DjangoFilterBackend
@@ -20,7 +20,8 @@ class UserViewset(mixins.RetrieveModelMixin,
                    mixins.ListModelMixin,
                    viewsets.GenericViewSet):
 
-    queryset = User.objects.filter(is_superuser=False) #过滤掉超级用户
+    # queryset = User.objects.filter(is_superuser=False) #过滤掉超级用户
+    queryset = User.objects.all()
     serializer_class = UserSerializer
     filter_class = UserFilter
     filter_fields = ("username",)

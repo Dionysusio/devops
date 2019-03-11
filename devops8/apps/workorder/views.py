@@ -14,6 +14,7 @@ class WorkOrderViewset(viewsets.ModelViewSet):
     filter_fields = ("title", "order_contents")
 
     def get_queryset(self):
+        # 重写父类的get_queryset方法
         status = self.request.GET.get('status',None)
         applicant = self.request.user
         # 获取当前登录用户的所有组的信息，RBAC 用户-->组-->权限
@@ -29,13 +30,15 @@ class WorkOrderViewset(viewsets.ModelViewSet):
         else:
             queryset = WorkOrder.objects.all()
 
-        # 判断登录用户是否为管理员，是则显示所有工单，否则只显示自己的，ops是我的组名
+        # 判断登录用户是否为管理员，是 则显示所有工单，否则 只显示自己的，ops是我的组名
         if "ops" not in role_name:
-            queryset = queryset.filter(applicant=applicant)
-        return queryset
+            queryset = queryset.filter(applicant=applicant) #只显示自己的
+        return queryset #返回所有的工单
 
     def partial_update(self, request, *args, **kwargs):
+        # 拿到工单的id
         pk = int(kwargs.get("pk"))
+        # 最终处理人
         final_processor = self.request.user
         data = request.data
         data['final_processor'] = final_processor

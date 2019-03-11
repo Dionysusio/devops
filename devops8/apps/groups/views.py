@@ -50,7 +50,7 @@ class UserGroupsViewset(viewsets.GenericViewSet,
         groupIds = request.data.get("gids", []) #获取多个组,是id的形式
 
         # 多对多: user_group_set, 或者 user_groups = 列表
-        userObj.groups = Group.objects.filter(id__in=groupIds) #给用户添加组
+        userObj.group_set = Group.objects.filter(id__in=groupIds) #给用户添加组
 
         return response.Response(status=status.HTTP_204_NO_CONTENT)
 
