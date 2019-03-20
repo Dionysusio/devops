@@ -57,7 +57,8 @@ INSTALLED_APPS = [
     'workorder',
     'autotask',
     'release',
-    'projects'
+    'projects',
+    'kiwi'
 ]
 
 APSCHEDULER_DATETIME_FORMAT =  "N j, Y, f:s a"

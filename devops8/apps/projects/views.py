@@ -29,7 +29,7 @@ class ProjectVersionsView(View):
 
     def get(self, request):
         project_id = request.GET.get('project_id')
-        print(project_id)
+        # print(project_id)
         tag_list = []
         tags = get_project_versions(int(project_id))
         for tag in tags:

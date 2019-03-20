@@ -9,12 +9,13 @@ def get_user_projects(request):
     获取gitlab里所有的项目，和登录用户所拥有的项目,以及登录用户所拥有项目的项目成员
     :return: []
     """
-    # 用户下的项目列表
-    user_projects = []
     # 获取所有项目
     all_projects = gl.projects.list()
     print(request.user.username)
     print(all_projects)
+
+   # 用户下的项目列表
+    user_projects = []
 
     # 获取当前用户所有的项目
     for project in all_projects:
