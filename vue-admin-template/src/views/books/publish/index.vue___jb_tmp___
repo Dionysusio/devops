@@ -95,6 +95,7 @@ export default {
     /* 调用list接口，拉取数据 */
     fetchData () {
       getPublishList(this.params).then(res => {
+          // console.log(res)
           this.publishs = res.results
           this.totalNum = res.count
         })

@@ -1,6 +1,7 @@
 import request from '@/utils/request'
 
-export function getPermissionList(params) {
+// 获取权限列表
+export function getPermissionList (params) {
   return request({
     url: '/api/permission/',
     method: 'get',
@@ -9,7 +10,7 @@ export function getPermissionList(params) {
 }
 
 // 更新指定用户组的权限列表
-export function updateGroupPermissionList(gid, data) {
+export function updateGroupPermissionList (gid, data) {
   return request({
     url: `/api/groupPermission/${gid}/`,
     method: 'patch',
@@ -18,7 +19,7 @@ export function updateGroupPermissionList(gid, data) {
 }
 
 // 获取指定用户组的权限列表
-export function getGroupPermissionList(gid, params) {
+export function getGroupPermissionList (gid, params) {
   return request({
     url: `/api/groupPermission/${gid}/`,
     method: 'get',

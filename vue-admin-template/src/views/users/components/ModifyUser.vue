@@ -27,7 +27,7 @@ export default {
       default: 0
     }
   },
-  data() {
+  data () {
     return {
       visible: false,
       userObj: null,
@@ -44,10 +44,10 @@ export default {
     }
   },
   watch: {
-    value(val) {
+    value (val) {
       this.visible = val
     },
-    userId(val) {
+    userId (val) {
       // 修改指定用户的手机号,需要传id
       if (val === 0) return
       // 如果id等于0,啥也不做,否则,获取用户信息,定义fetchUser()方法,定义getUser api接口
@@ -57,20 +57,20 @@ export default {
     }
   },
   methods: {
-    handleClose() {
+    handleClose () {
       this.visible = false
       this.$emit('input', false)
       this.userObj = null
       this.resetForm()
       this.title = ''
     },
-    resetForm() {
+    resetForm () {
       this.$refs.modifyUserForm.resetFields()
       if (this.userId === 0) return
       if (this.userObj === null) return
       this.form.phone = this.userObj.phone
     },
-    submitForm() {
+    submitForm () {
       this.$refs.modifyUserForm.validate((valid) => {
         if (valid) {
           modifyUser(this.userId, this.form).then(() => {
@@ -87,7 +87,7 @@ export default {
         }
       })
     },
-    fetchUser() {
+    fetchUser () {
       // 获取user信息
       getUser(this.uid).then(res => {
         this.title = `修改 ${res.name} 的信息`

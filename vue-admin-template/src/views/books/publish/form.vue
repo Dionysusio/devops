@@ -30,7 +30,7 @@
                      @click="cancel">取消</el-button>
           <el-button size="small"
                      type="primary"
-                     @click="submitForm">保存</el-button>
+                     @click="submitForm">确定</el-button>
         </div>
       </el-form-item>
 
@@ -54,10 +54,9 @@ export default {
       }
     }
   },
-
   data () {
     return {
-      rules: {
+      rules: { // 验证规则
         name: [
           { required: true, message: '请输入名称', trigger: 'blur' }
         ],
@@ -70,14 +69,13 @@ export default {
       }
     }
   },
-
   methods: {
     submitForm () {
       this.$refs.form.validate(valid => {
         if (!valid) {
           return
         }
-        console.log(this.form)
+        // console.log(this.form)
         this.$emit('submit', this.form)
       })
     },

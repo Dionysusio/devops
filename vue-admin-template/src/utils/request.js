@@ -15,7 +15,8 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     if (store.getters.token) {
-      config.headers['Authorization'] = 'JWT ' + getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+      config.headers['Authorization'] = 'JWT ' + getToken()
+      // 让每个请求携带自定义token 请根据实际情况自行修改
     }
     return config
   },
@@ -36,20 +37,21 @@ service.interceptors.response.use(
     return response.data
   },
   error => {
-    console.log('err' + error) // for debug
+    console.log('err' + error) // for debug,
+    // request.js 统一处理异常,每个组件中也可以独立处理异常, 使用.catch(err => {}) 捕获
     if (!error.response) {
       Message.error('系统错误')
     } else if (error.response.status === 401) { // 如果错误是401
-      store.dispatch('FedLogOut').then(() => {
-        router.push({ path: '/login' }) // 让前端登出
+      store.dispatch('FedLogOut').then(() => { // 让前端登出
+        router.push({ path: '/login' }) // 去登录页面
       })
     } else if (error.response.status === 403) { // 如果没权限
       Message({
         message: '权限拒绝',
         type: 'error',
         duration: 800,
-        onClose: function() {
-          router.push({ path: '/' }) // 回调函数,去首页
+        onClose: function() { // 回调函数onClose
+          router.push({ path: '/' }) // 去首页
         }
       })
     } else if (error.response.status === 400) { // 如果是400

@@ -34,7 +34,7 @@ export default {
           message: '创建工单成功',
           type: 'success'
         })
-        this.$router.push({ path: '/workorder/list' })
+        this.$router.push({ path: '/workorder/list' }) // 创建成功跳转到工单页面
       })
     },
     fetchCancel () {

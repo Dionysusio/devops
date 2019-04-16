@@ -21,8 +21,8 @@
               :title="item.meta.title" />
       </template>
 
-      <template v-for="child in item.children"
-                v-if="!child.hidden">
+      <template v-for="child in item.children">
+        <!-- v-if="!child.hidden" -->
         <sidebar-item v-if="child.children&&child.children.length>0"
                       :is-nest="true"
                       :item="child"

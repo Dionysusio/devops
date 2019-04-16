@@ -3,6 +3,7 @@
     <el-table :data="form"
               style="width: 100%">
       <el-table-column type="index" />
+
       <el-table-column prop="name"
                        label="书名" />
       <el-table-column prop="publication_date"
@@ -17,8 +18,7 @@
       <el-table-column prop="authors"
                        label="作者">
         <template slot-scope="scope">
-          <div v-for="item in scope.row.authors"
-               :key="item.id">
+          <div v-for="item in scope.row.authors" :key="item.id">
             <span style="float: left">{{ item.name }},</span>
           </div>
         </template>

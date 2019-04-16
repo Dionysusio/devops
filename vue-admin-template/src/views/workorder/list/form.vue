@@ -32,7 +32,7 @@
 <script>
 export default {
   name: 'OrderForm',
-  props: {
+  props: { // 子组件接收父组件index.vue传来的值
     form: {
       type: Object,
       default () {

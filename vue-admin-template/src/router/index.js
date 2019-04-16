@@ -40,13 +40,13 @@ export const constantRouterMap = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         meta: { title: 'Dashboard', icon: 'example' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
       }
+      // {
+      //   path: 'tree',
+      //   name: 'Tree',
+      //   component: () => import('@/views/tree/index'),
+      //   meta: { title: 'Tree', icon: 'tree' }
+      // }
     ]
   },
   {
@@ -63,11 +63,11 @@ export const constantRouterMap = [
         meta: { title: '用户', icon: 'user' }
       },
       {
-        path: 'groups',
+        path: '/groups',
         name: 'groups',
         permission: 'resources.add_ip',
-        component: () => import('@/views/groups'),
-        meta: { title: '用户组' }
+        component: () => import('@/views/groups/index'),
+        meta: { title: '用户组', icon: 'user' }
       }
     ]
   },
@@ -124,7 +124,67 @@ export const constantRouterMap = [
         meta: { title: '工单历史', icon: 'table' }
       }
     ]
-  }
+  },
+  {
+    path: '/tasks',
+    component: Layout,
+    name: '任务系统',
+    meta: { title: '任务系统', icon: 'tree' },
+    children: [
+      {
+        path: 'add',
+        name: '任务添加',
+        component: () => import('@/views/tasks/add/index'),
+        meta: { title: '任务添加', icon: 'form' }
+      },
+      {
+        path: 'list',
+        name: '任务列表',
+        component: () => import('@/views/tasks/list/index'),
+        meta: { title: '申请列表', icon: 'table' }
+      }
+    ]
+  },
+  {
+    path: '/project',
+    component: Layout,
+    name: '项目管理',
+    meta: { title: '项目管理', icon: 'code' },
+    children: [
+      {
+        path: 'list',
+        name: 'project',
+        component: () => import('@/views/project/list/index'),
+        meta: { title: 'project', icon: 'user' }
+      }
+    ]
+  },
+  {
+    path: '/release',
+    component: Layout,
+    name: '代码上线',
+    meta: { title: '代码上线', icon: 'user' },
+    children: [
+      {
+        path: 'apply',
+        name: '申请上线',
+        component: () => import('@/views/release/apply/index'),
+        meta: { title: '申请上线', icon: 'user' }
+      },
+      {
+        path: 'list',
+        name: 'applylist',
+        component: () => import('@/views/release/list/index'),
+        meta: { title: 'applylist', icon: 'tree' }
+      },
+      {
+        path: 'history',
+        name: '上线列表',
+        component: () => import('@/views/release/history/index'),
+        meta: { title: '上线列表', icon: 'tree' }
+      }
+    ]
+  },
   // {
   //   path: '/example',
   //   component: Layout,
@@ -228,8 +288,7 @@ export const constantRouterMap = [
   //     }
   //   ]
   // },
-
-  // { path: '*', redirect: '/404', hidden: true }
+  { path: '*', redirect: '/404', hidden: true }
 ]
 
 export default new Router({

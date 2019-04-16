@@ -12,9 +12,9 @@
                      @click="handleSearch" />
         </el-input>
       </el-col>
-      <!--添加按钮-->
       <el-col :span="16"
               style="text-align: right">
+        <!--添加按钮-->
         <el-button v-if="addPerm"
                    type="primary"
                    @click="handleAddBtn">添加图书</el-button>
@@ -55,12 +55,7 @@
 </template>
 
 <script>
-import {
-  getBooksList,
-  updateBooks,
-  deleteBooks,
-  createBooks
-} from "@/api/books/book"
+import { getBooksList, updateBooks,deleteBooks,createBooks } from "@/api/books/book"
 import { checkPerms } from "@/utils/auth"
 import BookTable from "./table.vue"
 import BookForm from "./form.vue"
@@ -100,12 +95,11 @@ export default {
         this.totalNum = res.count
       })
     },
-    handleEdit (Obj) {
-      console.log(Obj)
+    handleEdit (Obj) { // 接收到的obj是所有的数据
+      // console.log(Obj)
       this.currentValue = Obj
-      this.currentValue["authors"] = this.currentValue["authors"].map(
-        it => it.id
-      )
+      // authors,publisher存入id,使用map方法
+      this.currentValue["authors"] = this.currentValue["authors"].map(it => it.id)
       this.currentValue["publisher"] = this.currentValue["publisher"][0].id
       this.dialogVisibleForEdit = true
     },
@@ -113,7 +107,7 @@ export default {
       this.$refs.BookForm.$refs.form.resetFields()
       this.dialogVisibleForEdit = false
     },
-    handleSubmitEdit (value) {
+    handleSubmitEdit (value) { // 更新的时候需要传一个id,接收到的value是所有的数据,需要把id和数据分开
       const { id, ...params } = value
       updateBooks(id, params).then(res => {
         this.$message({

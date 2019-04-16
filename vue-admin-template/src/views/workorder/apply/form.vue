@@ -58,12 +58,13 @@ export default {
     return {
       form: {},
       options: [],
+      // type_list写死的
       type_list: [{ 'id': 0, 'name': '数据库' }, { 'id': 1, 'name': '计划任务' }, { 'id': 2, 'name': '配置文件' }, { 'id': 3, 'name': 'WEB服务' }, { 'id': 4, 'name': '其它' }],
       sa_list: [],
       publish_list: [],
       author_list: [],
       state: 0,
-      rules: {
+      rules: { // 验证
         type: [
           { required: true, message: '"请选择工单类型', trigger: 'blur' }
         ],

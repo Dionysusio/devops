@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
-export function getGroupList(params) {
-  // 获取组列表
+// 获取组列表
+export function getGroupList (params) {
   return request({
     url: '/api/groups/',
     method: 'get',
@@ -9,8 +9,8 @@ export function getGroupList(params) {
   })
 }
 
-export function addGroup(data) {
-  // 创建组
+// 创建组
+export function addGroup (data) {
   return request({
     url: '/api/groups/',
     method: 'post',
@@ -18,8 +18,8 @@ export function addGroup(data) {
   })
 }
 
-export function modifyGroup(id, data) {
-  // 更新组
+// 更新组
+export function modifyGroup (id, data) {
   return request({
     url: `/api/groups/${id}/`,
     method: 'patch',
@@ -27,8 +27,8 @@ export function modifyGroup(id, data) {
   })
 }
 
-// 修改指定用户的组
-export function updateUserGroups(uid, data) {
+// 修改指定用户的角色(组)
+export function updateUserGroups (uid, data) {
   return request({
     url: `/api/userGroups/${uid}/`,
     method: 'patch',
@@ -37,7 +37,7 @@ export function updateUserGroups(uid, data) {
 }
 
 // 获取指定用户的所有组
-export function getUserGroupList(uid, params) {
+export function getUserGroupList (uid, params) {
   return request({
     url: `/api/userGroups/${uid}/`,
     method: 'get',
@@ -46,7 +46,7 @@ export function getUserGroupList(uid, params) {
 }
 
 // 获取指定用户组下的成员列表
-export function getGroupMemberList(gid, params) {
+export function getGroupMemberList (gid, params) {
   return request({
     url: `/api/groupMembers/${gid}/`,
     method: 'get',
@@ -55,7 +55,7 @@ export function getGroupMemberList(gid, params) {
 }
 
 // 从用户组中移除指定用户
-export function removeGroupMember(gid, data) {
+export function removeGroupMember (gid, data) {
   return request({
     url: `/api/groupMembers/${gid}/`,
     method: 'delete',

@@ -15,8 +15,9 @@ export function removeToken() {
   return Cookies.remove(TokenKey)
 }
 
-export function checkPermission(perm) {
-  if (store.getters.permission.indexOf(perm) > -1) {
+// 验证权限
+export function checkPermission(perm) { // perm 传的权限
+  if (store.getters.permission.indexOf(perm) > -1) { // 大于-1 就是找到了
     return true
   }
   return false

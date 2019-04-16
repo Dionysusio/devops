@@ -13,17 +13,17 @@
         </el-input>
       </el-col>
     </el-row>
-    <!--子组件表格-->
+    <!--调用子组件表格-->
     <WorkorderList :value="workorders"
                    @delete="handleDelete"
                    @rate="handleRate"
                    @edit="handleEdit" />
-    <!-- 父组件监听子组件触发的rate事件 -->
-    <!--任务进度-->
+    <!--任务进度,   父组件监听子组件触发的rate事件-->
     <el-dialog :title="currentValue.title"
                :visible.sync="dialogVisibleForRate"
                width="30%"
                @close="handleClose">
+      <!-- title: 工单的标题-->
       <div style="height: 300px;">
         <el-steps :active="active"
                   direction="vertical"
@@ -36,7 +36,10 @@
         </el-steps>
       </div>
     </el-dialog>
-    <!--模态框工单处理-->
+    <!--模态框工单处理 -->
+    <!-- :form 点击模态窗的时候获取当前行所有数据,存到变量currentValue里,传给子组件form.vue
+          @submit,@cancel 父组件监听子组件触发的更新和取消事件
+     -->
     <el-dialog :visible.sync="dialogVisibleForEdit"
                title="工单处理"
                width="50%">
@@ -102,9 +105,9 @@ export default {
         this.total = res.count
       })
     },
-    handleDelete (id) {
-      const data = { 'status': 3 } // 3 失败 
-      updateworkorders(id, data).then(res => {
+    handleDelete (id) { // 接收一个id
+      const data = { 'status': 3 } // 将状态改为 3 失败 
+      updateworkorders(id, data).then(res => { // 走的还是updateworkorders更新操作,传id,data
         this.$message({
           message: '拒绝成功',
           type: 'success'
@@ -139,7 +142,7 @@ export default {
     handleClose () {
       this.active = 1
     },
-    handleEdit (value) { // 工单流转
+    handleEdit (value) { // 工单流转,点击处理时走的也是更新
       this.currentValue = { ...value } // 获取数据
       const data = { 'status': 1 } // 状态改为1,申请
       const id = this.currentValue.id // id就是工单的id
@@ -148,14 +151,14 @@ export default {
           message: `接收工单`,
           type: 'success'
         })
-        this.dialogVisibleForEdit = true
-        this.fetchworkorderlist()
+        this.dialogVisibleForEdit = true // 弹出模态窗
+        this.fetchworkorderlist() // 获取数据
       })
     },
-    submitForm (value) {
+    submitForm (value) { // 更新
       const { id, ...params } = value
-      const data = { 'status': 2, 'result_desc': params.result_desc }
-      updateworkorders(id, data).then(res => {
+      const data = { 'status': 2, 'result_desc': params.result_desc } // 改变状态,返回处理结果
+      updateworkorders(id, data).then(res => { // api的局部更新
         this.$message({
           message: `更新成功`,
           type: 'success'

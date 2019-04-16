@@ -11,9 +11,9 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {},
 
-    //前端访问的地址和端口
+    // 前端访问的地址和端口
     host: '0.0.0.0',
-    port: 8080,
+    port: 8088,
     autoOpenBrowser: true,
     errorOverlay: true,
     notifyOnErrors: false,
