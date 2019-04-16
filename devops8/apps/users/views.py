@@ -20,6 +20,8 @@ class UserViewset(mixins.RetrieveModelMixin,
                    mixins.ListModelMixin,
                    viewsets.GenericViewSet):
 
+    """ """
+
     # queryset = User.objects.filter(is_superuser=False) #过滤掉超级用户
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -31,6 +33,15 @@ class UserRegViewset(viewsets.GenericViewSet,
                      mixins.CreateModelMixin,
                      mixins.UpdateModelMixin):
 
+    """
+        create:
+            用户注册
+        partial_update:
+            修改密码
+        update:
+            修改密码
+    """
+    # partial_update等于patch
     queryset = User.objects.all()
     serializer_class = UserRegSerializer
 

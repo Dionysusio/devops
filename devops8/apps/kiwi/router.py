@@ -6,8 +6,8 @@ from .views import IdcViewSet, FunctionViewSet, SubfunctionViewSet,AZViewSet
 
 kiwi_router = DefaultRouter()
 
-kiwi_router.register("idc", IdcViewSet, base_name="idc")
-kiwi_router.register("function", FunctionViewSet, base_name="function")
-kiwi_router.register("subfunction", SubfunctionViewSet, base_name="subfunction")
-kiwi_router.register("AZ", AZViewSet, base_name="AZ")
+kiwi_router.register("idc_list", IdcViewSet, base_name="idc_list")
+# kiwi_router.register("function", FunctionViewSet, base_name="function")
+# kiwi_router.register("subfunction", SubfunctionViewSet, base_name="subfunction")
+# kiwi_router.register("AZ", AZViewSet, base_name="AZ")
 

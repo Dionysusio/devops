@@ -17,7 +17,7 @@ class GroupSerializer(serializers.ModelSerializer):
         fields = ("id", "name")
 
 
-# 不支持添加/修改,只是把数据返回给前端
+# 不支持添加,修改,只是把数据返回给前端
 class UserGroupsSerializer(serializers.Serializer):
     """
     group序列化类

@@ -7,6 +7,8 @@ from rest_framework.parsers import JSONParser
 
 
 
+########################### 版本一 ##############################################
+
 class JSONResponse(HttpResponse):
 
     def __init__(self,data,**kwargs):
@@ -19,35 +21,51 @@ def idc_list(request, *args, **kwargs):
     if request.method == "GET":
         # 返回idc列表
         queryset = Idc.objects.all()
+        # 直接从数据库拿的queryset是不干净的,序列化类可以帮我们拿到干净的数据,处理完是放在serializer.data里
         serializer = IdcSerializer(queryset,many=True)
+        # 序列化,是将模型里的数据返回给前端!!!!!
+        # 第一个参数:查询集queryset或者是模型的obj,第二个参数:如果是多条记录,many=True,如果是模型obj,many=False
         return JSONResponse(serializer.data)
-        # return HttpResponse(content,content_type="application\json")
+        # 返回给前端
 
     elif request.method == "POST":
-        # 创建一个对象
+        # 序列化里有个动作: 保存数据到数据库
         content = JSONParser().parse(request)
+        # 将提交过来的body里的数据进行转码,返回json格式的数据
+
         serializer = IdcSerializer(data=content)
+        # 反序列化是将前端http post提交过来的json格式的数据 保存到数据库,需要提供data,是json格式的字符串!!!!!
+        # 对json格式的数据进行序列化
+
         if serializer.is_valid():
+            # 验证
             serializer.save()
+            # 保存到数据库
             return JSONResponse(serializer.data)
+            # 返回给前端
             # return HttpResponse(content, content_type="application\json")
 
 
 # /idcs/pk/
 def idc_detail(request, pk, *args, **kwargs):
     try:
+        # 需要事先传入一个pk,获取要操作的对象,pk是表的唯一索引,不会存在多条记录,只会不存在,只要捕获不存在的异常
         idc = Idc.objects.get(pk=pk)
     except Idc.DoesNotExist:
         return HttpResponse(status=404)
 
     if request.method == "GET":
+        # 获取当个对象,交给序列化类
         serializer = IdcSerializer(idc)
         return JSONResponse(serializer.data)
 
     elif request.method == "PUT":
+        # 更新一个对象,交给序列化类
         content = JSONParser().parse(request)
         serializer = IdcSerializer(idc, data=content)
+        # 验证
         if serializer.is_valid():
+            # 保存
             serializer.save()
             return JSONResponse(serializer.data)
 
@@ -61,16 +79,15 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 
+# 在函数的基础上封装了一层api_view,定义了方法就允许请求,否则不允许
 @api_view(["GET","POST"])
 def idc_list_v2(request, *args, **kwargs):
     if request.method == "GET":
-        # 返回idc列表
         queryset = Idc.objects.all()
         serializer = IdcSerializer(queryset,many=True)
         return Response(serializer.data)
 
     elif request.method == "POST":
-        # 创建一个对象
         content = JSONParser().parse(request)
         serializer = IdcSerializer(data=content)
         if serializer.is_valid():
@@ -161,7 +178,9 @@ class IdcDetail(APIView):
 
 
 ########################### 版本四 ##############################################
-# 将具体的动作实现了,有queryset属性,跟数据库相关
+# 在APIView的基础上 将具体的动作实现了: 创建,修改,删除
+# 查看GenericAPIView源码, 是在APIView的基础上做的一些事情
+# 有queryset属性,只要有这个属性 就是跟数据库相关,从数据库拿东西,如果一个视图跟数据库没关系,就不用GenericAPIView
 
 from rest_framework import mixins,generics
 
@@ -200,7 +219,8 @@ class IdcDetail_V4(generics.GenericAPIView,
 
 
 ##################################  版本五  ##############################################
-
+# generics.ListCreateAPIView,
+# generics.RetrieveUpdateDestroyAPIView
 
 class IdcList_V5(generics.ListCreateAPIView):
     queryset = Idc.objects.all()
@@ -213,7 +233,7 @@ class IdcDetail_V5(generics.RetrieveUpdateDestroyAPIView):
 
 
 ##################################  版本六  ##############################################
-
+# viewsets.GenericViewSet
 # 处理复杂的url
 
 from rest_framework import viewsets #导入viewsets,视图集
@@ -235,6 +255,7 @@ class IdcListViewset(viewsets.GenericViewSet,
 
 from rest_framework import viewsets
 
+#继承viewsets.ModelViewSet这一个类,实现所有方法
 class IdcListViewset_v7(viewsets.ModelViewSet):
     """
     retrieve:
@@ -255,7 +276,7 @@ class IdcListViewset_v7(viewsets.ModelViewSet):
     partial_update:
         更新部分字段
     """
-    #继承viewsets.ModelViewSet这一个类,实现所有方法
+
     queryset = Idc.objects.all()
     serializer_class = IDCSerializer
 

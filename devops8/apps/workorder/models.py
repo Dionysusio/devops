@@ -6,6 +6,8 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class WorkOrder(models.Model):
+    """ 工单系统"""
+
     TYPE = (
         (0, '数据库'),
         (1, 'WEB服务'),

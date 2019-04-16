@@ -20,12 +20,13 @@ class GroupUserViewset(viewsets.GenericViewSet):
         return Group.objects.get(**filter_kwargs)
 
     def get_queryset(self):
-        # 获取指定组下的user列表
+        # 返回指定组下的user列表
         groupObj = self.get_group_object()
         return groupObj.user_set.all()
 
+
     def retrieve(self, request, *args, **kwargs):
-        # list的代码实现retrive方法
+        # get方法实现的是retrieve, list的代码实现retrive方法
         queryset = self.get_queryset()
         serializer = self.get_serializer(queryset,many=True)
         return response.Response(serializer.data)
@@ -40,6 +41,7 @@ class GroupUserViewset(viewsets.GenericViewSet):
         groupObj.user_set.add(userObj)
         return response.Response(status=status.HTTP_204_NO_CONTENT)
 
+
     def destroy(self, request, *args, **kwargs):
         # 从用户组中删除一个成员
         groupObj = self.get_group_object()
@@ -48,3 +50,5 @@ class GroupUserViewset(viewsets.GenericViewSet):
         print('userObj ==> {}'.format(userObj))
         groupObj.user_set.remove(userObj)
         return response.Response(status=status.HTTP_204_NO_CONTENT)
+
+

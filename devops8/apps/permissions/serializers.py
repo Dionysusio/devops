@@ -12,11 +12,11 @@ from django.contrib.auth.models import Permission, ContentType
 
 
 class PermissionSerializer(serializers.ModelSerializer):
-    # content_type = ContentTypeSerializer() 最简单的方式,指定字段
+    # content_type = ContentTypeSerializer() 最简单的方式,指定字段content_type
 
     def to_representation(self, instance):
-        # ret = super(PermissionSerializer,self).to_representation(instance)
-        # 自定义字段,不要上面那个ret了
+        # 需要指定 content_type
+        # ret = super(PermissionSerializer,self).to_representation(instance) 自定义字段,不要父类的ret数据了
         ret = {}
         ret["key"] = instance.id
         ret["label"] = "{}.{}".format(instance.content_type.app_label, instance.codename)
@@ -25,3 +25,5 @@ class PermissionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Permission
         fields = "__all__"
+
+

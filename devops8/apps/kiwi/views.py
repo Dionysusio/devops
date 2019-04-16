@@ -39,7 +39,6 @@ class IdcViewSet(View):
                 serializer.save()
                 content = JSONRenderer().render(serializer.data)
                 # return HttpResponse(content, content_type="application/json")
-
         return HttpResponse(json_list,content_type="application/json")
 
 

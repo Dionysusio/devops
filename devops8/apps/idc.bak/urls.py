@@ -79,11 +79,13 @@ urlpatterns = [
 ]
 
 ########################### 版本七 ##############################################
+#导入DefaultRouter
+from rest_framework.routers import DefaultRouter
 
-from rest_framework.routers import DefaultRouter #导入DefaultRouter
-
-router = DefaultRouter() #实例化
-router.register("idcs",views.IdcListViewset_v7) #注册,每次只要注册这个就可以了
+#实例化
+router = DefaultRouter()
+#注册,每次只要注册这个就可以了
+router.register("idcs",views.IdcListViewset_v7)
 
 urlpatterns = [
     url(r'^',include(router.urls))

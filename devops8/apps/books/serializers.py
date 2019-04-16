@@ -27,7 +27,7 @@ class BookSerializer(serializers.ModelSerializer):
         model = Book
         fields = "__all__"
 
-    def author(self, author_queryset): #author_queryset: book.authors.all()
+    def author(self, author_queryset): #参数: 在to_representation传的,instance.authors.all()
         ret = []
         print(author_queryset)
         # 多对多的结果是一个列表对象，需要遍历对象，将需要序列化的内容提出来即可,返回书对应的所有作者
@@ -40,11 +40,10 @@ class BookSerializer(serializers.ModelSerializer):
         return ret
 
     def to_representation(self, instance):
-        # 一对多关系，相当于一对多的正向查询。获取当前书的出版商，
+        # 获取当前书的出版商对象，一对多关系，相当于一对多的正向查询。
         publisher_obj = instance.publisher
 
-        # 多对多，相当于多对多的正向查询。获取当前书对应的作者，
-        # instance 指的是book
+        # 获取当前书对应的作者对象，多对多，相当于多对多的正向查询。这个是重点!
         authors_obj = self.author(instance.authors.all())
 
         # 将书的相关信息序列化，即将Book.objects.all()的querydict结果集合转为JSON
@@ -66,23 +65,25 @@ class BookSerializer(serializers.ModelSerializer):
     # 重写create方法，源码中已经对单表、一对多、多对多对关系做了处理，此次为了学习调试方便重写
     def create(self, validated_data):
         # {'name': '平凡的世界', 'publication_date': datetime.date(2018, 5, 10),
-        # 'publisher': <Publish: Publish object>, 'authors': [<Author: Author object>]}
+        # 'publisher': <Publish: Publish object>, 'authors': [<Author: Author object>],[],[]}
 
         author_list = validated_data.pop('authors', [])  #把前端传递过来的authors字段置空
         instance = self.Meta.model.objects.create(**validated_data)
-        # print(validated_data)
+
         # author和book是多对多关系，添加数据时需要单独处理
         instance.authors.set(author_list)
+
         return instance
 
     # 源码中已经对单表、一对多、多对多对关系做了处理，此次为了学习调试方便重写
     def update(self, instance, validated_data):
-        print(validated_data)
         author_list = validated_data.pop('authors', [])
         self.Meta.model.objects.filter(id=instance.id).update(**validated_data)
-        print(author_list)
-        # 多对多添加的两种写法
+        # print(author_list)
         instance.authors.set(author_list)
         return instance
 
+        # 多对多2种添加方式: set: 重置  add: 追加
+        # instance.authors.set(author_list)
+        # instance.authors.add(author_list)
 

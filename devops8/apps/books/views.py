@@ -32,6 +32,7 @@ class PublishViewSet(viewsets.ModelViewSet):
 
     queryset = Publish.objects.all()
     serializer_class = PublishSerializer
+    pagination_class = PageNumberPagination
     filter_class = PublishFilter
     filter_fields = ("name", "city")
 
@@ -85,6 +86,9 @@ class BookViewSet(viewsets.ModelViewSet):
 
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+    pagination_class = PageNumberPagination
     filter_class = BookFilter
     #跨关联搜索publisher__name,authors__name
     filter_fields = ("name", "publisher__name", "authors__name")
+
+

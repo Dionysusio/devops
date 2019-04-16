@@ -26,21 +26,24 @@ class ServerSerializer(serializers.Serializer):
         model = Server
         fields = "__all__"
 
+    # 将 cloud换成qcloud对应的id值
     def getCloudPk(self, code):
         try:
             obj = Cloud.objects.get(code__exact=code)
             return obj.id
-        except Cloud.DoesNotExist:
+        except Cloud.DoesNotExist: #参数是code,不是pk,不是唯一的,会报错
             logger.error("云厂商不存在: {}".format(code))
             raise serializers.ValidationError("云厂商不存在")
         except Exception as e:
             logger.error("云厂商错误: ".format(e.args))
             raise serializers.ValidationError("云厂商错误")
 
+    # 改变cloud的值
     def to_internal_value(self, data):
-        data["cloud"] = self.getCloudPk(data["cloud"])
+        data["cloud"] = self.getCloudPk(data["cloud"]) #改变下cloud的值,调用getCloudPk
         print("to_internal_value: ", data)
         return super(ServerSerializer, self).to_internal_value(data)
+
 
     def getInstance(self, instanceId):
         try:
@@ -91,21 +94,32 @@ class ServerSerializer(serializers.Serializer):
             current_ip_objs.append(ip_obj)
         self.cleanip(ip_queryset, current_ip_objs)
 
+
     def cleanip(self, ip_queryset, current_ip_objs):
         not_exists_ip = set(ip_queryset) - set(current_ip_objs)
         for obj in not_exists_ip:
             obj.delete()
 
     def to_representation(self,instance):
-        result = super(ServerSerializer, self).to_representation(instance)
-        result['cloud'] = {
+        ret = super(ServerSerializer, self).to_representation(instance)
+
+        ret['cloud'] = {
             'id': instance.cloud.id,
             'name': instance.cloud.name
         }
-        # 待转换时间区域
-        # createdTime = datetime.datetime.strftime(result['createdTime'],'%Y-%m-%d %H:%M:%S')
-        # result['createdTime'] = (createdTime + datetime.timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')
-        # print(dir(instance))
-        result['publicIps'] = [ip.ip for ip in instance.publicIpAddress.all()]
-        result['innerIps'] = [ip.ip for ip in instance.innerIpAddress.all()]
-        return result
+
+        # result['publicIps'] = [ip.ip for ip in instance.publicIpAddress.all()]
+        # result['innerIps'] = [ip.ip for ip in instance.innerIpAddress.all()]
+
+        ret["publicIps"] = []
+        ret["innerIps"] = []
+
+        for ip in instance.publicIpAddress.all(): #遍历所有的外网ip
+            print(ip.ip)
+            ret["publicIps"].append(ip.ip)
+
+        for ip in instance.innerIpAddress.all():
+            ret["innerIps"].append(ip.ip)
+
+        return ret
+
