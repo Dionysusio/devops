@@ -66,8 +66,6 @@ Finally there is a small detail to pay attention to that if you import vue in gl
 
 And you can use `npm run build --report` to see the effect
 
-#Pictured:
-#![demo](https://panjiachen.github.io/images/element-cdn.png)
 
 **[Detailed code](https://github.com/PanJiaChen/vue-admin-template/commit/746aff560932704ae821f82f10b8b2a9681d5177)**
 
