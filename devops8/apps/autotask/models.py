@@ -23,15 +23,3 @@ class Tasks(models.Model):
         ordering = ['-add_time']
 
 
-
-
-
-
-
-
-
-
-
-
-
-

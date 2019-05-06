@@ -36,7 +36,7 @@ router.registry.extend(deploy_router.registry)
 urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^', include(router.urls)),
-    # url(r'^', include("projects.urls")),
+    url(r'^', include("projects.urls")),
     # url(r'^', include("kiwi.urls")),
     # url(r'^', include('resources.urls')),
     url(r'^api-auth', include('rest_framework.urls')),
