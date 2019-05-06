@@ -1,9 +1,3 @@
 # devops
-django restframework 前后端分离项目,学习使用,欢迎交流学习![eyzk_1112@163.com]
-
-后端代码:
-devops8,devops
-
-前端代码:
-vue-admin-template
+django restframework 前后端分离项目,学习使用,欢迎交流学习!
 
