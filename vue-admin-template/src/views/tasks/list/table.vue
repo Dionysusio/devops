@@ -6,6 +6,7 @@
               style="width: 100%">
       <el-table-column prop="name"
                        label="任务名称" />
+      <!--formatter 格式化显示-->
       <el-table-column :formatter="formatPlayBook"
                        prop="playbook"
                        label="Playbook" />

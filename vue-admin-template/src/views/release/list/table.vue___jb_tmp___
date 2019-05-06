@@ -1,6 +1,7 @@
 <template>
   <div class="deploy-list">
-    <el-table :data="value"
+    <el-dialog :visible.sync="visible" @close="handleClose">
+      <el-table :data="value"
               border
               stripe
               style="width: 100%">
@@ -45,6 +46,7 @@
       </el-table-column>
 
     </el-table>
+    </el-dialog>
   </div>
 </template>
 
@@ -60,14 +62,25 @@ export default {
       }
     }
   },
-
+  data () {
+    return {
+      visible: false,
+    }
+  },
   methods: {
     /* 点击编辑按钮，将子组件的事件传递给父组件 */
     handleEdit (value) {
       console.log(value)
       this.$emit('edit', value)
     },
-
+    resetForm () {
+      this.$refs.form.resetFields()
+    },
+    
+    handleClose () {
+      this.visible = false
+      this.resetForm()
+    },
     /* 删除 */
     handleDelete (value) {
       const id = value.id

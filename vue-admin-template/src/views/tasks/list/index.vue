@@ -10,7 +10,7 @@
                width="70%">
       <div>
         <pre>{{ exce_result }}</pre>
-        <!--  pre: 默认数据长啥样,前端就显示啥样 -->
+        <!--  pre: 默认数据长啥样,前端就显示啥样,不加的话会乱码 -->
       </div>
     </el-dialog>
     <el-row type="flex"
@@ -66,7 +66,7 @@ export default {
     handleDetail (id) {
       this.dialogVisibleForTask = true // 模态窗起来
       detailautotask(id).then(res => { // 拿到详情id
-        console.log(res)
+        // console.log(res)
         this.exce_result = res.detail_result // 直接将res中的detail_result赋值给this.exce_result
       })
     },

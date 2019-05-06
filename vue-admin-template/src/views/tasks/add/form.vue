@@ -61,7 +61,7 @@ export default {
   methods: {
     getFile (event) {
       // console.log(this.$refs.files.files[0])  通过event获取这行文件的所有信息
-      // console.log(event)  所有上传信息在event.target里
+      // console.log(event)  所有上传文件在event.target里
       this.form.playbook = event.target.files[0] // 将文件塞到表单里
       console.log(this.form.playbook)
     },

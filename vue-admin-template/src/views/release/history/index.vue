@@ -67,10 +67,9 @@ export default {
 
   methods: {
     fetchData () {
-      getDeployList(this.params).then(
-        res => {
+      getDeployList(this.params).then(res => {
           this.release = res.results
-          // console.log(this.release)
+          console.log(this.release)
           this.totalNum = res.count
         })
     },

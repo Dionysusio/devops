@@ -1,6 +1,7 @@
 <template>
   <div class="deploy-form">
-    <el-form ref="form"
+    <el-dialog :visible.sync="visible" @close="handleClose">
+      <el-form ref="form"
              :model="form"
              :rules="rules"
              label-width="100px"
@@ -40,6 +41,7 @@
       </el-form-item>
 
     </el-form>
+    </el-dialog>
   </div>
 </template>
 
@@ -50,7 +52,7 @@ export default {
   props: {
     form: { // 接受父组件传递过来的值渲染表单
       type: Object,
-      default() {
+      default () {
         return {
           name: '',
           info: '',
@@ -63,11 +65,27 @@ export default {
   },
   data () {
     return {
+      visible: false,
+      form: {
+        Name: '',
+        Info: '',
+        Version: '',
+        Detail: '',
+        Status: ''
+      },
       rules: {
         name: [
           { required: true, message: '请输入处理结果', trigger: 'blur' }
         ]
       }
+    }
+  },
+  watch: {
+    value (val) {
+      this.visible = val
+    },
+    Name (val) {
+      
     }
   },
   methods: {
@@ -78,6 +96,14 @@ export default {
         }
         this.$emit('submit', this.form)
       })
+    },
+    resetForm () {
+      this.$refs.form.resetFields()
+    },
+    handleClose () {
+      this.visible = false
+      this.resetForm()
+      this.$emit('input', false)
     }
   }
 }

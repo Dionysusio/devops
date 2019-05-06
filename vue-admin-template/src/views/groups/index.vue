@@ -24,10 +24,13 @@
               style="width: 100%">
       <el-table-column type="index"
                        width="50" />
+
       <el-table-column prop="name"
                        label="组名" />
+
       <el-table-column fixed="right"
                        label="成员管理">
+
         <template slot-scope="scope">
           <el-button type="text"
                      size="small"
