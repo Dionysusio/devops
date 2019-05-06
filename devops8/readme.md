@@ -8,6 +8,15 @@
 
 ## 项目介绍:
 
+前端:
+  vue-admin-template/
+
+后端:
+  devops8/
+
+
+后端app:
+
 books       图书管理系统
 
 Users       用户管理
