@@ -2,7 +2,8 @@
 自己的练习项目,仅供学习使用,欢迎交流讨论!
 
 #Pictured:
-#![demo](http://47.107.95.187/devops.png)
+#![demo](http://47.107.95.187/imgs/devops.png)
+#![demo](http://47.107.95.187/imgs/vuetest.png)
 
 
 

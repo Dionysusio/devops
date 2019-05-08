@@ -32,6 +32,7 @@ class WorkOrderSerializer(serializers.ModelSerializer):
         applicant_obj = instance.applicant #申请人
         assign_to_obj = instance.assign_to #处理人
         final_processor_obj = instance.final_processor #最终处理人
+
         type_value = instance.get_type_display()
         status_value = instance.get_status_display()
 
