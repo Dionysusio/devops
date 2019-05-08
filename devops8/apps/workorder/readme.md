@@ -2,11 +2,11 @@
 工单系统  workorder
 
 #Pictured:
-#![demo1](http://47.107.95.187/微信图片_1.png)
+#![demo1](http://47.107.95.187/imgs/微信图片_1.png)
 
-#![demo2](http://47.107.95.187/微信图片_2.png)
+#![demo2](http://47.107.95.187/imgs/微信图片_2.png)
 
-#![demo3](http://47.107.95.187/微信图片_3.png)
+#![demo3](http://47.107.95.187/imgs/微信图片_3.png)
 
 
 
