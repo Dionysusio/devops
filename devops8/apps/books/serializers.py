@@ -27,7 +27,7 @@ class BookSerializer(serializers.ModelSerializer):
         model = Book
         fields = "__all__"
 
-    def author(self, author_queryset): #参数: 在to_representation传的,instance.authors.all()
+    def author(self, author_queryset): #参数author_queryset: 在to_representation调用时传的,instance.authors.all()
         ret = []
         print(author_queryset)
         # 多对多的结果是一个列表对象，需要遍历对象，将需要序列化的内容提出来即可,返回书对应的所有作者

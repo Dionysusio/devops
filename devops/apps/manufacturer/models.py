@@ -17,7 +17,7 @@ class Manufacturer(models.Model):
 
 class ProductModel(models.Model):
     model_name = models.CharField("型号名称",max_length=20,help_text="型号名称") #型号名称
-    vendor  = models.ForeignKey(Manufacturer,verbose_name="所属制造商",help_text="所属制造商",on_delete=models.CASCADE,) #所属制造商
+    vendor  = models.ForeignKey(Manufacturer,verbose_name="所属制造商",help_text="所属制造商", on_delete=models.CASCADE,) #所属制造商
 
     def __str__(self):
         return  self.model_name

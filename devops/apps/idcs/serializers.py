@@ -7,6 +7,7 @@ from .models import Idc
 class IdcSerializer(serializers.Serializer):
     """Idc序列化"""
     id         = serializers.IntegerField(read_only=True)
+
     name       = serializers.CharField(required=True,max_length=32,label="机房名称",help_text="机房名称",
                                         error_messages={
                                            "blank":"机房名称不能为空",
